@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://vcyql0fvj26"]
+
+[ext_resource type="Script" path="res://scenes/wizard/wizard.gd" id="1_8aw3p"]
+[ext_resource type="PackedScene" uid="uid://24cpksp7nedu" path="res://scenes/light/point_light_2d.tscn" id="2_yhb3h"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_xgjht"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vwblx"]
+size = Vector2(22, 32)
+
+[node name="Wizard" type="Area2D"]
+script = ExtResource("1_8aw3p")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.391122, 0.00189058, 0.808025, 1)
+position = Vector2(-1.78814e-07, 0)
+scale = Vector2(22, 32)
+texture = SubResource("CanvasTexture_xgjht")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_vwblx")
+
+[node name="PointLight2D" parent="." instance=ExtResource("2_yhb3h")]

@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=3 uid="uid://d03q4bemjddqu"]
+
+[ext_resource type="Script" path="res://scenes/player/player.gd" id="1_lkwi8"]
+[ext_resource type="PackedScene" uid="uid://d03nc71sjwa26" path="res://scenes/groundShadow/ground_shadow.tscn" id="2_gomiw"]
+[ext_resource type="PackedScene" uid="uid://jlood4k8vocs" path="res://scenes/ui/game_ui.tscn" id="3_v0i56"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2ribg"]
+size = Vector2(16, 30)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_y7mli"]
+
+[node name="Player" type="CharacterBody2D" groups=["player"]]
+script = ExtResource("1_lkwi8")
+GROUND_SHADOW = ExtResource("2_gomiw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_2ribg")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -4.76837e-07)
+scale = Vector2(16.1289, 30)
+texture = SubResource("CanvasTexture_y7mli")
+
+[node name="ReloadTimer" type="Timer" parent="."]
+wait_time = 12.0
+one_shot = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)
+
+[node name="UI" parent="." instance=ExtResource("3_v0i56")]
+offset_left = 403.0
+offset_top = 206.0
+offset_right = 403.0
+offset_bottom = 206.0
+size_flags_vertical = 8
+
+[node name="MarkerHead" type="Marker2D" parent="."]
+position = Vector2(0, -15)
+
+[node name="MarkerFeet" type="Marker2D" parent="."]
+position = Vector2(0, 15)
+
+[node name="MarkerBody" type="Marker2D" parent="."]
+
+[connection signal="timeout" from="ReloadTimer" to="." method="_on_reload_timer_timeout"]
