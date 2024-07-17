@@ -10,6 +10,7 @@ const white = Color(1, 1, 1)
 
 func _process(delta: float) -> void:
 	player_in_light()
+	look_at(player.global_position)
 
 func player_in_light():
 	var space_state = get_world_2d().direct_space_state

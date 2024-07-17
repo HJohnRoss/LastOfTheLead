@@ -9,7 +9,7 @@
 [node name="Level1" type="Node2D"]
 
 [node name="background" type="Sprite2D" parent="."]
-modulate = Color(0.0702535, 0.070708, 0.0491942, 1)
+modulate = Color(0.0537784, 0.0913745, 0.162316, 1)
 position = Vector2(750, -571)
 scale = Vector2(4724, 6700)
 texture = SubResource("CanvasTexture_gqqwt")
