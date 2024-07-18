@@ -9,7 +9,9 @@ class_name Player
 
 
 @onready var reload_timer: Timer = $ReloadTimer
-@onready var marker_weapon: Marker2D = $MarkerWeapon
+
+@onready var marker_weapon_right: Marker2D = $MarkerWeaponRight
+@onready var marker_weapon_left: Marker2D = $MarkerWeaponLeft
 
 @export var backstab: PackedScene
 
@@ -21,6 +23,7 @@ const JUMP_VELOCITY: float = -400.0
 
 var is_reloaded: bool = true
 var new_backstab
+var weapon_left = false
 
 
 func _ready() -> void:
@@ -36,8 +39,6 @@ func _ready() -> void:
 	
 
 func _process(_delta: float) -> void:
-	# updating the position of the weapon (im convinced there is a better way)
-	new_backstab.position = marker_weapon.global_position
 	
 	# disabling the player when ded
 	# TODO get dead screen and checkpoints per level
@@ -46,6 +47,12 @@ func _process(_delta: float) -> void:
 		set_process(false)
 
 func _physics_process(delta: float) -> void:
+	# updating the position of the weapon (im convinced there is a better way)
+	#TODO !IMPORTANT find a better way of doing this + add left animation
+	if weapon_left:
+		new_backstab.global_position = marker_weapon_left.global_position
+	else:
+		new_backstab.global_position = marker_weapon_right.global_position
 	# if player is in the air, if so add gravity
 	if !is_on_floor():
 		velocity.y += GRAVITY * delta
@@ -59,8 +66,10 @@ func get_input() -> void:
 	#player input
 	if Input.is_action_pressed("left"):
 		velocity.x = -RUN_SPEED
-	if Input.is_action_pressed("right"):
+		weapon_left = true
+	elif Input.is_action_pressed("right"):
 		velocity.x = RUN_SPEED
+		weapon_left = false
 	
 	if Input.is_action_just_pressed("jump") && is_on_floor():
 		velocity.y = JUMP_VELOCITY

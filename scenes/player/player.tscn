@@ -28,8 +28,11 @@ one_shot = true
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(5, 5)
 
-[node name="MarkerWeapon" type="Marker2D" parent="."]
+[node name="MarkerWeaponRight" type="Marker2D" parent="."]
 position = Vector2(10, -1)
+
+[node name="MarkerWeaponLeft" type="Marker2D" parent="."]
+position = Vector2(-10, -1)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
