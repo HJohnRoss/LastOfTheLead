@@ -8,7 +8,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vwblx"]
 size = Vector2(22, 32)
 
-[node name="Wizard" type="Area2D"]
+[node name="CharacterBody2D" type="CharacterBody2D" groups=["enemy"]]
 script = ExtResource("1_8aw3p")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

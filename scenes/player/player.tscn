@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://d03q4bemjddqu"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_lkwi8"]
-[ext_resource type="PackedScene" uid="uid://d03nc71sjwa26" path="res://scenes/groundShadow/ground_shadow.tscn" id="2_gomiw"]
+[ext_resource type="PackedScene" uid="uid://dnbd8nrlqosko" path="res://scenes/backstab/backstab.tscn" id="3_jy5vy"]
 [ext_resource type="PackedScene" uid="uid://jlood4k8vocs" path="res://scenes/ui/game_ui.tscn" id="3_v0i56"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2ribg"]
@@ -11,7 +11,7 @@ size = Vector2(16, 30)
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 script = ExtResource("1_lkwi8")
-GROUND_SHADOW = ExtResource("2_gomiw")
+backstab = ExtResource("3_jy5vy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_2ribg")
@@ -26,22 +26,27 @@ wait_time = 12.0
 one_shot = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(2, 2)
+zoom = Vector2(5, 5)
 
-[node name="MarkerHead" type="Marker2D" parent="."]
-position = Vector2(8, -15)
-
-[node name="MarkerHead2" type="Marker2D" parent="."]
-position = Vector2(-8, -15)
-
-[node name="MarkerFeet" type="Marker2D" parent="."]
-position = Vector2(8, 15)
-
-[node name="MarkerFeet2" type="Marker2D" parent="."]
-position = Vector2(-8, 15)
+[node name="MarkerWeapon" type="Marker2D" parent="."]
+position = Vector2(10, -1)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="UI" parent="CanvasLayer" instance=ExtResource("3_v0i56")]
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="MarkerHead" type="Marker2D" parent="Node2D"]
+position = Vector2(8, -15)
+
+[node name="MarkerHead2" type="Marker2D" parent="Node2D"]
+position = Vector2(-8, -15)
+
+[node name="MarkerFeet" type="Marker2D" parent="Node2D"]
+position = Vector2(8, 15)
+
+[node name="MarkerFeet2" type="Marker2D" parent="Node2D"]
+position = Vector2(-8, 15)
 
 [connection signal="timeout" from="ReloadTimer" to="." method="_on_reload_timer_timeout"]

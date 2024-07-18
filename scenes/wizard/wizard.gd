@@ -1,12 +1,11 @@
-extends Area2D
+extends CharacterBody2D
+
+class_name Wizard
+
+@export var health = 1;
 
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	#look_at(get_tree().get_first_node_in_group(GameManager.PLAYER_GROUP).global_position)
-	pass
+func incoming_damage(damage) -> void:
+	health -= damage
+	if health == 0:
+		queue_free()

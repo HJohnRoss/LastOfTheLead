@@ -1,5 +1,7 @@
 extends Node
 
+const ENEMY_GROUP = "enemy"
+
 const PLAYER_GROUP = "player" 
 var PLAYER_HEALTH: int = 10
 
