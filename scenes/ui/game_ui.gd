@@ -4,7 +4,10 @@ extends Control
 @onready var shadow_reload_timer: Label = $MarginContainer/HBoxContainer/ShadowReloadTimer
 @onready var health_label: Label = $MarginContainer/HBoxContainer2/HealthLabel
 
+
+var pause_menu = preload("res://scenes/ui/pause_menu.tscn")
 var reload_time: int = 12
+
 
 func _ready() -> void:
 	# initializing hp text
@@ -12,11 +15,17 @@ func _ready() -> void:
 	
 	SignalManager.shadow_reload.connect(reloading)
 	SignalManager.player_lose_health.connect(player_lose_health)
+	
+	var pause_instance = pause_menu.instantiate()
+	add_child(pause_instance)
 
 func _process(_delta: float) -> void:
 	#TODO HAS TO BE A BETTER WAY MAN
 	health_label.text = str(GameManager.PLAYER_HEALTH) + " HP"
 	
+	
+
+
 
 func reloading() -> void:
 	#TODO probably wont need if were not using "groundshadow" scene
