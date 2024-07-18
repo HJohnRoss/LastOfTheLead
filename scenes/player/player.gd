@@ -39,6 +39,10 @@ func _ready() -> void:
 	
 
 func _process(_delta: float) -> void:
+	if weapon_left:
+		new_backstab.global_position = marker_weapon_left.global_position
+	else:
+		new_backstab.global_position = marker_weapon_right.global_position
 	
 	# disabling the player when ded
 	# TODO get dead screen and checkpoints per level
@@ -48,11 +52,7 @@ func _process(_delta: float) -> void:
 
 func _physics_process(delta: float) -> void:
 	# updating the position of the weapon (im convinced there is a better way)
-	#TODO !IMPORTANT find a better way of doing this + add left animation
-	if weapon_left:
-		new_backstab.global_position = marker_weapon_left.global_position
-	else:
-		new_backstab.global_position = marker_weapon_right.global_position
+	#TODO !IMPORTANT find a better way of doing this
 	# if player is in the air, if so add gravity
 	if !is_on_floor():
 		velocity.y += GRAVITY * delta
@@ -67,9 +67,13 @@ func get_input() -> void:
 	if Input.is_action_pressed("left"):
 		velocity.x = -RUN_SPEED
 		weapon_left = true
+		if new_backstab.animation_player.is_playing():
+			new_backstab.swap_animation_side("left")
 	elif Input.is_action_pressed("right"):
 		velocity.x = RUN_SPEED
 		weapon_left = false
+		if new_backstab.animation_player.is_playing():
+			new_backstab.swap_animation_side("right")
 	
 	if Input.is_action_just_pressed("jump") && is_on_floor():
 		velocity.y = JUMP_VELOCITY
@@ -79,11 +83,8 @@ func get_input() -> void:
 	
 	# weapon swing
 	if Input.is_action_just_pressed("left_click"):
-		swing()
+		new_backstab.swing(weapon_left)
 
-# signaling to the backstab object to swing the sword
-func swing() -> void:
-	SignalManager.swing_sword.emit()
 
 #func ground_shadow() -> void:
 	#if is_reloaded == false:

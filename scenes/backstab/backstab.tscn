@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dnbd8nrlqosko"]
+[gd_scene load_steps=7 format=3 uid="uid://dnbd8nrlqosko"]
 
 [ext_resource type="Script" path="res://scenes/backstab/backstab.gd" id="1_3pk13"]
 
@@ -8,7 +8,7 @@
 size = Vector2(1.5, 25)
 
 [sub_resource type="Animation" id="Animation_nkmrc"]
-resource_name = "backstab"
+resource_name = "backstab_right"
 length = 0.4
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -23,9 +23,26 @@ tracks/0/keys = {
 "values": [0.0, 2.0944, 2.61799, 1.5708, 0.0]
 }
 
+[sub_resource type="Animation" id="Animation_y2vio"]
+resource_name = "backstab_left"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -2.0944, -2.61799, -1.5708, 0.0]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_62ehc"]
 _data = {
-"backstab": SubResource("Animation_nkmrc")
+"backstab_left": SubResource("Animation_y2vio"),
+"backstab_right": SubResource("Animation_nkmrc")
 }
 
 [node name="Backstab" type="Area2D"]
