@@ -30,5 +30,18 @@ collide_with_areas = true
 target_position = Vector2(806, 0)
 collide_with_areas = true
 
+[node name="RayCast2D4" type="RayCast2D" parent="."]
+target_position = Vector2(806, 0)
+collide_with_areas = true
+
+[node name="RayCast2D5" type="RayCast2D" parent="."]
+target_position = Vector2(806, 0)
+collide_with_areas = true
+
+[node name="DamageTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_area2D_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="timeout" from="DamageTimer" to="." method="_on_damage_timer_timeout"]

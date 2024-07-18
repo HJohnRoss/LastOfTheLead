@@ -28,17 +28,20 @@ one_shot = true
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2, 2)
 
-[node name="UI" parent="." instance=ExtResource("3_v0i56")]
-offset_left = 403.0
-offset_top = 206.0
-offset_right = 403.0
-offset_bottom = 206.0
-size_flags_vertical = 8
-
 [node name="MarkerHead" type="Marker2D" parent="."]
-position = Vector2(0, -15)
+position = Vector2(8, -15)
+
+[node name="MarkerHead2" type="Marker2D" parent="."]
+position = Vector2(-8, -15)
 
 [node name="MarkerFeet" type="Marker2D" parent="."]
-position = Vector2(0, 15)
+position = Vector2(8, 15)
+
+[node name="MarkerFeet2" type="Marker2D" parent="."]
+position = Vector2(-8, 15)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="UI" parent="CanvasLayer" instance=ExtResource("3_v0i56")]
 
 [connection signal="timeout" from="ReloadTimer" to="." method="_on_reload_timer_timeout"]

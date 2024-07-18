@@ -5,6 +5,8 @@ class_name Player
 @onready var reload_timer: Timer = $ReloadTimer
 @onready var marker_head: Marker2D = $MarkerHead
 @onready var marker_feet: Marker2D = $MarkerFeet
+@onready var marker_head_2: Marker2D = $MarkerHead2
+@onready var marker_feet_2: Marker2D = $MarkerFeet2
 
 @export var GROUND_SHADOW: PackedScene
 
@@ -16,10 +18,18 @@ const JUMP_VELOCITY: float = -400.0
 
 var is_reloaded: bool = true
 
+
 func _ready() -> void:
 	GameManager.MARKER_FEET = marker_feet
 	GameManager.MARKER_HEAD = marker_head
+	GameManager.MARKER_FEET_2 = marker_feet_2
+	GameManager.MARKER_HEAD_2 = marker_head_2
+	
 
+func _process(delta: float) -> void:
+	if GameManager.PLAYER_HEALTH <= 0:
+		set_physics_process(false)
+		set_process(false)
 
 func _physics_process(delta: float) -> void:
 	if !is_on_floor():

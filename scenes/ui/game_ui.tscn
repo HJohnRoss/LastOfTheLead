@@ -1,8 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://jlood4k8vocs"]
+[gd_scene load_steps=4 format=3 uid="uid://jlood4k8vocs"]
 
 [ext_resource type="Script" path="res://scenes/ui/game_ui.gd" id="1_hn4de"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_5ugro"]
+font_size = 64
+
+[sub_resource type="LabelSettings" id="LabelSettings_4uqe7"]
 font_size = 64
 
 [node name="UI" type="Control"]
@@ -21,20 +24,31 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
 theme_override_constants/margin_bottom = 25
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
 layout_mode = 2
-size_flags_horizontal = 4
 size_flags_vertical = 8
 
-[node name="ShadowReloadTimer" type="Label" parent="MarginContainer/VBoxContainer"]
-visible = false
+[node name="ShadowReloadTimer" type="Label" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
 text = "12"
 label_settings = SubResource("LabelSettings_5ugro")
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="HealthLabel" type="Label" parent="MarginContainer/HBoxContainer2"]
+layout_mode = 2
+text = "10 HP"
+label_settings = SubResource("LabelSettings_4uqe7")
 
 [node name="ReloadTimer" type="Timer" parent="."]
 
