@@ -5,7 +5,7 @@ extends Control
 @onready var health_label: Label = $MarginContainer/HBoxContainer2/HealthLabel
 
 
-var pause_menu = preload("res://scenes/ui/pause_menu.tscn")
+var pause_menu = preload("res://scenes/pauseMenu/pause_menu.tscn")
 var reload_time: int = 12
 
 
