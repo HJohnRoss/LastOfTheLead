@@ -18,6 +18,11 @@ func _ready() -> void:
 	
 	var pause_instance = pause_menu.instantiate()
 	add_child(pause_instance)
+	
+	for i in range(5):
+		print("loop")
+		
+
 
 func _process(_delta: float) -> void:
 	#TODO HAS TO BE A BETTER WAY MAN
