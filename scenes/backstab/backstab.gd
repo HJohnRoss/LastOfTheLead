@@ -5,15 +5,30 @@ extends Area2D
 
 const damage = 1;
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-#   connecting the swing_sword signal to the swing_sword function
-	SignalManager.swing_sword.connect(swing_sword)
-
-func swing_sword() -> void:
+func swing(weapon_left: bool) -> void:
 	# enabling the collision for the sword and playing the animation
 	collision_shape_2d.set_disabled(false)
-	animation_player.play("backstab")
+	if weapon_left:
+		animation_player.play("backstab_left")
+	else:
+		animation_player.play("backstab_right")
+
+func swap_animation_side(side: String) -> void:
+	var curr_animation_name = animation_player.current_animation
+	if curr_animation_name == "backstab_left" && side == "left":
+		return
+	elif curr_animation_name == "backstab_right" && side == "right":
+		return
+	
+	var curr_animation_time = animation_player.current_animation_position
+	animation_player.stop()
+	if side == "left":
+		animation_player.play("backstab_left")
+		animation_player.seek(curr_animation_time)
+	else:
+		animation_player.play("backstab_right")
+		animation_player.seek(curr_animation_time)
+	
 
 func _on_body_entered(body: Node2D) -> void:
 	# checking if the swing is actually hitting an enemy and checking if it has the "incoming_damage" method
