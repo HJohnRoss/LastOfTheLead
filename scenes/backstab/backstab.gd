@@ -5,6 +5,10 @@ extends Area2D
 
 const damage = 1;
 
+func _process(_delta: float) -> void:
+	if !animation_player.is_playing():
+		collision_shape_2d.set_disabled(true)
+
 func swing(weapon_left: bool) -> void:
 	# enabling the collision for the sword and playing the animation
 	collision_shape_2d.set_disabled(false)
