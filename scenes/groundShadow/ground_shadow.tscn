@@ -1,7 +1,8 @@
 [gd_scene load_steps=3 format=3 uid="uid://d03nc71sjwa26"]
 
 [ext_resource type="Script" path="res://scenes/groundShadow/ground_shadow.gd" id="1_aan8n"]
-[ext_resource type="TileSet" uid="uid://dahm24qvqpuyd" path="res://assets/tilemap/ben_tilemap.tres" id="1_o778s"]
+[ext_resource type="TileSet" uid="uid://dahm24qvqpuyd" path="res://assets/tilemap/Outdated_map.tres" id="1_o778s"]
+
 
 [node name="TileMap" type="TileMap"]
 tile_set = ExtResource("1_o778s")

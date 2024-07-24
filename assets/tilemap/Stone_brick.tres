@@ -1,6 +1,6 @@
 [gd_resource type="TileSet" load_steps=40 format=3 uid="uid://daehrjcbr3ygo"]
 
-[ext_resource type="Texture2D" uid="uid://rbhvreusjbgk" path="res://assets/tilemap/merged_stone_wall_set.png" id="1_a0x76"]
+[ext_resource type="Texture2D" uid="uid://cvviuv2drfu3d" path="res://assets/tilemap/merged_stone_wall_set.png" id="1_a0x76"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_dubtw"]
 polygon = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
