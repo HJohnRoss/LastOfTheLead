@@ -27,7 +27,6 @@ animation = &"Idle"
 animation = &"Running"
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_86gix"]
-graph_offset = Vector2(-122.17, 220.17)
 nodes/Ground_h/node = SubResource("AnimationNodeTransition_undrx")
 nodes/Ground_h/position = Vector2(620, 140)
 nodes/Idle/node = SubResource("AnimationNodeAnimation_ygjqs")
@@ -267,6 +266,7 @@ _data = {
 }
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
+scale = Vector2(3, 3)
 script = ExtResource("1_lkwi8")
 backstab = ExtResource("3_jy5vy")
 

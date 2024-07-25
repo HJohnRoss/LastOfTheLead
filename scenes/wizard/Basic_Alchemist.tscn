@@ -1,0 +1,87 @@
+[gd_scene load_steps=8 format=3 uid="uid://bc70s8uyyc2tn"]
+
+[ext_resource type="Script" path="res://scenes/wizard/wizard.gd" id="1_uh08u"]
+[ext_resource type="Texture2D" uid="uid://b8ec0b6jhh1jq" path="res://scenes/level_1/enemy_walk.png" id="2_hfldt"]
+[ext_resource type="PackedScene" uid="uid://24cpksp7nedu" path="res://scenes/light/point_light_2d.tscn" id="3_hjytl"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_xgjht"]
+
+[sub_resource type="Animation" id="Animation_w28xn"]
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Basic_Alchemist_Sprite:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Basic_Alchemist_Sprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = false
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 1, 0, 3, 4, 3]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wn580"]
+_data = {
+"default": SubResource("Animation_w28xn")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vwblx"]
+size = Vector2(22, 32)
+
+[node name="CharacterBody2D" type="CharacterBody2D" groups=["enemy"]]
+script = ExtResource("1_uh08u")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.391122, 0.00189058, 0.808025, 1)
+position = Vector2(-1.78814e-07, 0)
+scale = Vector2(22, 32)
+texture = SubResource("CanvasTexture_xgjht")
+
+[node name="Basic_Alchemist_Sprite" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-5, 18)
+rotation = 6.28319
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("2_hfldt")
+flip_h = true
+hframes = 3
+vframes = 2
+frame = 3
+metadata/_aseprite_wizard_config_ = {
+"i_mode": -1,
+"keep_anim_length": false,
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"player": "Wizard/AnimationPlayer",
+"slice": "",
+"source": "E:/Art/aseprite/last_of_the_lead_art/enemy_walk.ase"
+}
+metadata/_aseprite_wizard_source_file_hash_ = "fefae8c6ecdea712cda81aa6dd883203"
+
+[node name="Basic_Alchemist_Animation" type="AnimationPlayer" parent="Basic_Alchemist_Sprite"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_wn580")
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_vwblx")
+
+[node name="PointLight2D" parent="." instance=ExtResource("3_hjytl")]
