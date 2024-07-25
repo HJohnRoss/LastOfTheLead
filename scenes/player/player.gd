@@ -6,10 +6,9 @@ class_name Player
 @onready var marker_head_2: Marker2D = $Node2D/MarkerHead2
 @onready var marker_feet: Marker2D = $Node2D/MarkerFeet
 @onready var marker_feet_2: Marker2D = $Node2D/MarkerFeet2
-
+@onready var tree : AnimationTree = $Player_Animation_Tree
 
 @onready var reload_timer: Timer = $ReloadTimer
-
 @onready var marker_weapon_right: Marker2D = $MarkerWeaponRight
 @onready var marker_weapon_left: Marker2D = $MarkerWeaponLeft
 
@@ -25,24 +24,30 @@ var is_reloaded: bool = true
 var new_backstab
 var weapon_left = false
 
-
 func _ready() -> void:
 	# setting up the global variables for raytracers
+	tree.active = true
 	GameManager.MARKER_FEET = marker_feet
 	GameManager.MARKER_HEAD = marker_head
 	GameManager.MARKER_FEET_2 = marker_feet_2
 	GameManager.MARKER_HEAD_2 = marker_head_2
-	
 	# making an instace of the weapon
 	new_backstab = backstab.instantiate()
 	add_child(new_backstab)
 	
-
 func _process(_delta: float) -> void:
 	if weapon_left:
 		new_backstab.global_position = marker_weapon_left.global_position
+		$Player_Sprite.flip_h = 1
 	else:
 		new_backstab.global_position = marker_weapon_right.global_position
+		$Player_Sprite.flip_h = 0
+		
+	if velocity.x > 0 || velocity.x < 0:
+		tree.set("parameters/Ground_h/transition_request", "Run")
+	else:
+		tree.set("parameters/Ground_h/transition_request", "Idle")
+	
 	
 	# disabling the player when ded
 	# TODO get dead screen and checkpoints per level
@@ -67,11 +72,14 @@ func get_input() -> void:
 	if Input.is_action_pressed("left"):
 		velocity.x = -RUN_SPEED
 		weapon_left = true
+
 		if new_backstab.animation_player.is_playing():
 			new_backstab.swap_animation_side("left")
 	elif Input.is_action_pressed("right"):
 		velocity.x = RUN_SPEED
 		weapon_left = false
+		
+
 		if new_backstab.animation_player.is_playing():
 			new_backstab.swap_animation_side("right")
 	
