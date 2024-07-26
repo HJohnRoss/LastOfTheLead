@@ -1,8 +1,8 @@
-[gd_scene load_steps=18 format=3 uid="uid://d03q4bemjddqu"]
+[gd_scene load_steps=20 format=3 uid="uid://d03q4bemjddqu"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_lkwi8"]
 [ext_resource type="PackedScene" uid="uid://dnbd8nrlqosko" path="res://scenes/backstab/backstab.tscn" id="3_jy5vy"]
-[ext_resource type="Texture2D" uid="uid://brvlla2dyfdw6" path="res://scenes/player/Lead_idle_animation.png" id="3_o3ab8"]
+[ext_resource type="Texture2D" uid="uid://bkpj557f1wnhw" path="res://scenes/player/Lead_idle_animation.png" id="3_o3ab8"]
 [ext_resource type="PackedScene" uid="uid://jlood4k8vocs" path="res://scenes/ui/game_ui.tscn" id="3_v0i56"]
 [ext_resource type="Texture2D" uid="uid://dvvipqlyw4fgy" path="res://scenes/player/Lead_run_animation.png" id="4_eemkp"]
 [ext_resource type="Texture2D" uid="uid://ccg8evjlwwv5q" path="res://scenes/player/Lead_run_transition.png" id="5_6wdgm"]
@@ -11,30 +11,6 @@
 size = Vector2(16, 30)
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_y7mli"]
-
-[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_undrx"]
-input_0/name = "Idle"
-input_0/auto_advance = false
-input_0/reset = true
-input_1/name = "Run"
-input_1/auto_advance = false
-input_1/reset = true
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ygjqs"]
-animation = &"Idle"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_twcnb"]
-animation = &"Running"
-
-[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_86gix"]
-nodes/Ground_h/node = SubResource("AnimationNodeTransition_undrx")
-nodes/Ground_h/position = Vector2(620, 140)
-nodes/Idle/node = SubResource("AnimationNodeAnimation_ygjqs")
-nodes/Idle/position = Vector2(160, 100)
-nodes/Run/node = SubResource("AnimationNodeAnimation_twcnb")
-nodes/Run/position = Vector2(160, 320)
-nodes/output/position = Vector2(1020, 40)
-node_connections = [&"Ground_h", 0, &"Idle", &"Ground_h", 1, &"Run", &"output", 0, &"Ground_h"]
 
 [sub_resource type="Animation" id="Animation_g1pgx"]
 resource_name = "Idle"
@@ -265,6 +241,44 @@ _data = {
 "Transition": SubResource("Animation_i3t3u")
 }
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_aklrv"]
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_undrx"]
+input_0/name = "Idle"
+input_0/auto_advance = false
+input_0/reset = true
+input_1/name = "Run"
+input_1/auto_advance = false
+input_1/reset = true
+input_2/name = "Roll"
+input_2/auto_advance = false
+input_2/reset = true
+input_3/name = "Death"
+input_3/auto_advance = false
+input_3/reset = true
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ygjqs"]
+animation = &"Idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_nk0g2"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_twcnb"]
+animation = &"Running"
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_86gix"]
+nodes/Death/node = SubResource("AnimationNodeAnimation_aklrv")
+nodes/Death/position = Vector2(-40, 240)
+nodes/Ground_h/node = SubResource("AnimationNodeTransition_undrx")
+nodes/Ground_h/position = Vector2(620, 140)
+nodes/Idle/node = SubResource("AnimationNodeAnimation_ygjqs")
+nodes/Idle/position = Vector2(0, 60)
+nodes/Roll/node = SubResource("AnimationNodeAnimation_nk0g2")
+nodes/Roll/position = Vector2(280, 220)
+nodes/Run/node = SubResource("AnimationNodeAnimation_twcnb")
+nodes/Run/position = Vector2(140, 140)
+nodes/output/position = Vector2(1020, 40)
+node_connections = [&"Ground_h", 0, &"Idle", &"Ground_h", 1, &"Run", &"Ground_h", 2, &"Roll", &"Ground_h", 3, &"Death", &"output", 0, &"Ground_h"]
+
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 scale = Vector2(3, 3)
 script = ExtResource("1_lkwi8")
@@ -302,6 +316,12 @@ metadata/_aseprite_wizard_interface_config_ = {
 "animation_section": false
 }
 
+[node name="Player_Animation" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Player_Sprite")
+libraries = {
+"": SubResource("AnimationLibrary_vob51")
+}
+
 [node name="Player_Animation_Tree" type="AnimationTree" parent="."]
 root_node = NodePath("../Player_Sprite")
 tree_root = SubResource("AnimationNodeBlendTree_86gix")
@@ -309,12 +329,6 @@ anim_player = NodePath("../Player_Animation")
 parameters/Ground_h/current_state = "Idle"
 parameters/Ground_h/transition_request = ""
 parameters/Ground_h/current_index = 0
-
-[node name="Player_Animation" type="AnimationPlayer" parent="."]
-root_node = NodePath("../Player_Sprite")
-libraries = {
-"": SubResource("AnimationLibrary_vob51")
-}
 
 [node name="ReloadTimer" type="Timer" parent="."]
 wait_time = 12.0
