@@ -18,6 +18,7 @@ const HURT_TIME: float = 0.3
 const JUMP_VELOCITY: float = -600.0
 
 var rolling = 0
+var crouching = 0
 
 func _ready() -> void:
 	# setting up the global variables for raytracers
@@ -39,13 +40,18 @@ func _process(_delta: float) -> void:
 		tree.set("parameters/Ground_h/transition_request", "Roll")
 	elif rolling == 2:
 		tree.set("parameters/Ground_h/transition_request", "Unroll")
+	
+	if crouching == 1:
+		tree.set("parameters/Ground_h/transition_request", "Crouch")
+	elif crouching == 2:
+		tree.set("parameters/Ground_h/transition_request", "Stand")
 	# disabling the player when ded
 	# TODO get dead screen and checkpoints per level
 	if !is_on_floor():
 		if(velocity.y < 0):
 			tree.set("parameters/Ground_h/transition_request", "Jump")
 		else:
-			pass
+			tree.set("parameters/Ground_h/transition_request", "Fall")
 	if GameManager.PLAYER_HEALTH <= 0:
 		set_physics_process(false)
 		set_process(false)
@@ -67,19 +73,15 @@ func get_input() -> void:
 	if Input.is_action_pressed("Roll"):
 		rolling = 1
 	if rolling == 0:
-		if Input.is_action_pressed("left"):
+		if Input.is_action_pressed("Down"):
+			crouching = 1
+		elif Input.is_action_pressed("left"):
 			velocity.x = -RUN_SPEED
 			$Player_Sprite.flip_h = 1
 
 		elif Input.is_action_pressed("right"):
 			velocity.x = RUN_SPEED
 			$Player_Sprite.flip_h = 0
-
-		elif Input.is_action_pressed("Down"):
-			pass
-	else:
-		if Input.is_action_pressed("Down"):
-			pass
 	
 	if Input.is_action_just_pressed("jump") && is_on_floor():
 		if Input.is_action_pressed("Down"):
@@ -93,9 +95,13 @@ func get_input() -> void:
 	if Input.is_action_just_released("Roll"):
 		rolling = 2
 	
+	if Input.is_action_just_released("Down"):
+		crouching = 2
 
 
 
 func _on_player_animation_tree_animation_finished(anim_name):
 	if anim_name == "Unroll":
 		rolling = 0
+	if anim_name == "Stand":
+		crouching = 0

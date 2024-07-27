@@ -1,8 +1,10 @@
-[gd_scene load_steps=29 format=3 uid="uid://bgipgn30b8erw"]
+[gd_scene load_steps=34 format=3 uid="uid://bgipgn30b8erw"]
 
 [ext_resource type="Script" path="res://scenes/Player_Test/playertest.gd" id="1_q3r7g"]
+[ext_resource type="Texture2D" uid="uid://240ietrd4tk7" path="res://scenes/player/Player_crouch.png" id="3_ari80"]
 [ext_resource type="Texture2D" uid="uid://b6dgqy8rhrwhx" path="res://scenes/player/Player_jump.png" id="3_h5nsv"]
 [ext_resource type="Texture2D" uid="uid://bkpj557f1wnhw" path="res://scenes/player/Lead_idle_animation.png" id="3_sbonw"]
+[ext_resource type="Texture2D" uid="uid://xarv87uather" path="res://scenes/player/Player_fall.png" id="3_t5qti"]
 [ext_resource type="Texture2D" uid="uid://dvvipqlyw4fgy" path="res://scenes/player/Lead_run_animation.png" id="4_7aeer"]
 [ext_resource type="Texture2D" uid="uid://ccg8evjlwwv5q" path="res://scenes/player/Lead_run_transition.png" id="5_6ummp"]
 [ext_resource type="Texture2D" uid="uid://ue2l7uqujmie" path="res://scenes/player/Player_into_roll_animation.png" id="6_if2q3"]
@@ -13,12 +15,110 @@ size = Vector2(12.8889, 29.3333)
 
 [sub_resource type="Animation" id="Animation_ep1xm"]
 resource_name = "Crouch"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_ari80")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:vframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
 
 [sub_resource type="Animation" id="Animation_52a5h"]
 resource_name = "Death"
 
 [sub_resource type="Animation" id="Animation_wqos2"]
 resource_name = "Fall"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_t5qti")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:vframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
 
 [sub_resource type="Animation" id="Animation_g1pgx"]
 resource_name = "Idle"
@@ -294,6 +394,55 @@ tracks/4/keys = {
 
 [sub_resource type="Animation" id="Animation_3d82n"]
 resource_name = "Stand"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_ari80")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:vframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [2, 1, 0]
+}
 
 [sub_resource type="Animation" id="Animation_i3t3u"]
 resource_name = "Transition"
@@ -415,7 +564,13 @@ _data = {
 "Unroll": SubResource("Animation_0qap5")
 }
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_kixrx"]
+animation = &"Crouch"
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_aklrv"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_h13kc"]
+animation = &"Fall"
 
 [sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_undrx"]
 input_0/name = "Idle"
@@ -436,6 +591,15 @@ input_4/reset = true
 input_5/name = "Jump"
 input_5/auto_advance = false
 input_5/reset = true
+input_6/name = "Fall"
+input_6/auto_advance = false
+input_6/reset = true
+input_7/name = "Crouch"
+input_7/auto_advance = false
+input_7/reset = true
+input_8/name = "Stand"
+input_8/auto_advance = false
+input_8/reset = true
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ygjqs"]
 animation = &"Idle"
@@ -449,13 +613,20 @@ animation = &"Roll"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_twcnb"]
 animation = &"Running"
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6vexg"]
+animation = &"Stand"
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5r7dd"]
 animation = &"Unroll"
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_86gix"]
-graph_offset = Vector2(-359.487, 70.814)
+graph_offset = Vector2(-199.093, 212.224)
+nodes/Crouch/node = SubResource("AnimationNodeAnimation_kixrx")
+nodes/Crouch/position = Vector2(80, 480)
 nodes/Death/node = SubResource("AnimationNodeAnimation_aklrv")
 nodes/Death/position = Vector2(-40, 240)
+nodes/Fall/node = SubResource("AnimationNodeAnimation_h13kc")
+nodes/Fall/position = Vector2(-60, 400)
 nodes/Ground_h/node = SubResource("AnimationNodeTransition_undrx")
 nodes/Ground_h/position = Vector2(620, 140)
 nodes/Idle/node = SubResource("AnimationNodeAnimation_ygjqs")
@@ -466,10 +637,12 @@ nodes/Roll/node = SubResource("AnimationNodeAnimation_nk0g2")
 nodes/Roll/position = Vector2(280, 220)
 nodes/Run/node = SubResource("AnimationNodeAnimation_twcnb")
 nodes/Run/position = Vector2(140, 140)
+nodes/Stand/node = SubResource("AnimationNodeAnimation_6vexg")
+nodes/Stand/position = Vector2(260, 520)
 nodes/Unroll/node = SubResource("AnimationNodeAnimation_5r7dd")
 nodes/Unroll/position = Vector2(80, 300)
 nodes/output/position = Vector2(1020, 40)
-node_connections = [&"Ground_h", 0, &"Idle", &"Ground_h", 1, &"Run", &"Ground_h", 2, &"Roll", &"Ground_h", 3, &"Death", &"Ground_h", 4, &"Unroll", &"Ground_h", 5, &"Jump", &"output", 0, &"Ground_h"]
+node_connections = [&"Ground_h", 0, &"Idle", &"Ground_h", 1, &"Run", &"Ground_h", 2, &"Roll", &"Ground_h", 3, &"Death", &"Ground_h", 4, &"Unroll", &"Ground_h", 5, &"Jump", &"Ground_h", 6, &"Fall", &"Ground_h", 7, &"Crouch", &"Ground_h", 8, &"Stand", &"output", 0, &"Ground_h"]
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 scale = Vector2(3, 3)
