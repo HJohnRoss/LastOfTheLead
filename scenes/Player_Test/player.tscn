@@ -1,6 +1,7 @@
-[gd_scene load_steps=27 format=3 uid="uid://bgipgn30b8erw"]
+[gd_scene load_steps=29 format=3 uid="uid://bgipgn30b8erw"]
 
 [ext_resource type="Script" path="res://scenes/Player_Test/playertest.gd" id="1_q3r7g"]
+[ext_resource type="Texture2D" uid="uid://b6dgqy8rhrwhx" path="res://scenes/player/Player_jump.png" id="3_h5nsv"]
 [ext_resource type="Texture2D" uid="uid://bkpj557f1wnhw" path="res://scenes/player/Lead_idle_animation.png" id="3_sbonw"]
 [ext_resource type="Texture2D" uid="uid://dvvipqlyw4fgy" path="res://scenes/player/Lead_run_animation.png" id="4_7aeer"]
 [ext_resource type="Texture2D" uid="uid://ccg8evjlwwv5q" path="res://scenes/player/Lead_run_transition.png" id="5_6ummp"]
@@ -74,6 +75,55 @@ tracks/3/keys = {
 
 [sub_resource type="Animation" id="Animation_gyoor"]
 resource_name = "Jump"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_h5nsv")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:vframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
 
 [sub_resource type="Animation" id="Animation_yykmm"]
 length = 0.001
@@ -383,9 +433,15 @@ input_3/reset = true
 input_4/name = "Unroll"
 input_4/auto_advance = false
 input_4/reset = true
+input_5/name = "Jump"
+input_5/auto_advance = false
+input_5/reset = true
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ygjqs"]
 animation = &"Idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_o3j1x"]
+animation = &"Jump"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_nk0g2"]
 animation = &"Roll"
@@ -397,21 +453,23 @@ animation = &"Running"
 animation = &"Unroll"
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_86gix"]
-graph_offset = Vector2(-199.755, 58.6618)
+graph_offset = Vector2(-359.487, 70.814)
 nodes/Death/node = SubResource("AnimationNodeAnimation_aklrv")
 nodes/Death/position = Vector2(-40, 240)
 nodes/Ground_h/node = SubResource("AnimationNodeTransition_undrx")
 nodes/Ground_h/position = Vector2(620, 140)
 nodes/Idle/node = SubResource("AnimationNodeAnimation_ygjqs")
 nodes/Idle/position = Vector2(0, 60)
+nodes/Jump/node = SubResource("AnimationNodeAnimation_o3j1x")
+nodes/Jump/position = Vector2(220, 360)
 nodes/Roll/node = SubResource("AnimationNodeAnimation_nk0g2")
 nodes/Roll/position = Vector2(280, 220)
 nodes/Run/node = SubResource("AnimationNodeAnimation_twcnb")
 nodes/Run/position = Vector2(140, 140)
 nodes/Unroll/node = SubResource("AnimationNodeAnimation_5r7dd")
-nodes/Unroll/position = Vector2(318.091, 382.875)
+nodes/Unroll/position = Vector2(80, 300)
 nodes/output/position = Vector2(1020, 40)
-node_connections = [&"Ground_h", 0, &"Idle", &"Ground_h", 1, &"Run", &"Ground_h", 2, &"Roll", &"Ground_h", 3, &"Death", &"Ground_h", 4, &"Unroll", &"output", 0, &"Ground_h"]
+node_connections = [&"Ground_h", 0, &"Idle", &"Ground_h", 1, &"Run", &"Ground_h", 2, &"Roll", &"Ground_h", 3, &"Death", &"Ground_h", 4, &"Unroll", &"Ground_h", 5, &"Jump", &"output", 0, &"Ground_h"]
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 scale = Vector2(3, 3)

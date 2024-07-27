@@ -6,6 +6,9 @@
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_xgjht"]
 
+[sub_resource type="Animation" id="Animation_l4bsq"]
+resource_name = "Attack"
+
 [sub_resource type="Animation" id="Animation_w28xn"]
 length = 0.8
 loop_mode = 1
@@ -33,9 +36,6 @@ tracks/1/keys = {
 "update": 1,
 "values": [0, 1, 2, 1, 0, 3, 4, 3]
 }
-
-[sub_resource type="Animation" id="Animation_l4bsq"]
-resource_name = "Attack"
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_wn580"]
 _data = {

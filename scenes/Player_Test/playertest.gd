@@ -41,6 +41,11 @@ func _process(_delta: float) -> void:
 		tree.set("parameters/Ground_h/transition_request", "Unroll")
 	# disabling the player when ded
 	# TODO get dead screen and checkpoints per level
+	if !is_on_floor():
+		if(velocity.y < 0):
+			tree.set("parameters/Ground_h/transition_request", "Jump")
+		else:
+			pass
 	if GameManager.PLAYER_HEALTH <= 0:
 		set_physics_process(false)
 		set_process(false)
