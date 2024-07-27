@@ -1,17 +1,14 @@
-[gd_scene load_steps=29 format=3 uid="uid://d03q4bemjddqu"]
+[gd_scene load_steps=27 format=3 uid="uid://bgipgn30b8erw"]
 
-[ext_resource type="Script" path="res://scenes/player/player.gd" id="1_lkwi8"]
-[ext_resource type="PackedScene" uid="uid://dnbd8nrlqosko" path="res://scenes/backstab/backstab.tscn" id="3_jy5vy"]
-[ext_resource type="Texture2D" uid="uid://bkpj557f1wnhw" path="res://scenes/player/Lead_idle_animation.png" id="3_o3ab8"]
-[ext_resource type="PackedScene" uid="uid://jlood4k8vocs" path="res://scenes/ui/game_ui.tscn" id="3_v0i56"]
-[ext_resource type="Texture2D" uid="uid://dvvipqlyw4fgy" path="res://scenes/player/Lead_run_animation.png" id="4_eemkp"]
-[ext_resource type="Texture2D" uid="uid://ccg8evjlwwv5q" path="res://scenes/player/Lead_run_transition.png" id="5_6wdgm"]
-[ext_resource type="Texture2D" uid="uid://ue2l7uqujmie" path="res://scenes/player/Player_into_roll_animation.png" id="6_ql8xt"]
+[ext_resource type="Script" path="res://scenes/Player_Test/playertest.gd" id="1_q3r7g"]
+[ext_resource type="Texture2D" uid="uid://bkpj557f1wnhw" path="res://scenes/player/Lead_idle_animation.png" id="3_sbonw"]
+[ext_resource type="Texture2D" uid="uid://dvvipqlyw4fgy" path="res://scenes/player/Lead_run_animation.png" id="4_7aeer"]
+[ext_resource type="Texture2D" uid="uid://ccg8evjlwwv5q" path="res://scenes/player/Lead_run_transition.png" id="5_6ummp"]
+[ext_resource type="Texture2D" uid="uid://ue2l7uqujmie" path="res://scenes/player/Player_into_roll_animation.png" id="6_if2q3"]
+[ext_resource type="PackedScene" uid="uid://jlood4k8vocs" path="res://scenes/ui/game_ui.tscn" id="7_l1y7t"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2ribg"]
-size = Vector2(16, 30)
-
-[sub_resource type="CanvasTexture" id="CanvasTexture_y7mli"]
+size = Vector2(21.3333, 29.3333)
 
 [sub_resource type="Animation" id="Animation_ep1xm"]
 resource_name = "Crouch"
@@ -36,7 +33,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("3_o3ab8")]
+"values": [ExtResource("3_sbonw")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -90,7 +87,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("3_o3ab8")]
+"values": [ExtResource("3_sbonw")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -166,7 +163,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("6_ql8xt")]
+"values": [ExtResource("6_if2q3")]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -218,7 +215,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0.0343146),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("4_eemkp")]
+"values": [ExtResource("4_7aeer")]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -262,7 +259,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("5_6wdgm")]
+"values": [ExtResource("5_6ummp")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -314,7 +311,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("6_ql8xt")]
+"values": [ExtResource("6_if2q3")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -400,7 +397,7 @@ animation = &"Running"
 animation = &"Unroll"
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_86gix"]
-graph_offset = Vector2(-332.411, 79.114)
+graph_offset = Vector2(-199.755, 58.6618)
 nodes/Death/node = SubResource("AnimationNodeAnimation_aklrv")
 nodes/Death/position = Vector2(-40, 240)
 nodes/Ground_h/node = SubResource("AnimationNodeTransition_undrx")
@@ -419,22 +416,13 @@ node_connections = [&"Ground_h", 0, &"Idle", &"Ground_h", 1, &"Run", &"Ground_h"
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 scale = Vector2(3, 3)
 collision_mask = 6
-script = ExtResource("1_lkwi8")
-backstab = ExtResource("3_jy5vy")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_2ribg")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, -4.76837e-07)
-scale = Vector2(16.1289, 30)
-texture = SubResource("CanvasTexture_y7mli")
+script = ExtResource("1_q3r7g")
 
 [node name="Player_Sprite" type="Sprite2D" parent="."]
 texture_filter = 1
 position = Vector2(0, -4)
-scale = Vector2(0.3, 0.3)
-texture = ExtResource("3_o3ab8")
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("3_sbonw")
 hframes = 4
 vframes = 3
 metadata/_aseprite_wizard_config_ = {
@@ -454,6 +442,11 @@ metadata/_aseprite_wizard_interface_config_ = {
 "animation_section": false
 }
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(7.94729e-08, -2)
+scale = Vector2(0.75, 0.75)
+shape = SubResource("RectangleShape2D_2ribg")
+
 [node name="Player_Animation" type="AnimationPlayer" parent="."]
 root_node = NodePath("../Player_Sprite")
 libraries = {
@@ -464,9 +457,9 @@ libraries = {
 root_node = NodePath("../Player_Sprite")
 tree_root = SubResource("AnimationNodeBlendTree_86gix")
 anim_player = NodePath("../Player_Animation")
-parameters/Ground_h/current_state = "Idle"
+parameters/Ground_h/current_state = "Death"
 parameters/Ground_h/transition_request = ""
-parameters/Ground_h/current_index = 0
+parameters/Ground_h/current_index = 3
 
 [node name="ReloadTimer" type="Timer" parent="."]
 wait_time = 12.0
@@ -482,7 +475,7 @@ position = Vector2(-10, -1)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="UI" parent="CanvasLayer" instance=ExtResource("3_v0i56")]
+[node name="UI" parent="CanvasLayer" instance=ExtResource("7_l1y7t")]
 
 [node name="Node2D" type="Node2D" parent="."]
 

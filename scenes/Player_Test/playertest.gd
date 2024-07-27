@@ -8,9 +8,6 @@ extends CharacterBody2D
 @onready var marker_feet_2: Marker2D = $Node2D/MarkerFeet2
 @onready var tree : AnimationTree = $Player_Animation_Tree
 
-@onready var reload_timer: Timer = $ReloadTimer
-@onready var marker_weapon_right: Marker2D = $MarkerWeaponRight
-@onready var marker_weapon_left: Marker2D = $MarkerWeaponLeft
 
 @export var backstab: PackedScene
 
@@ -20,9 +17,6 @@ const MAX_FALL: float = 400.0
 const HURT_TIME: float = 0.3
 const JUMP_VELOCITY: float = -600.0
 
-var is_reloaded: bool = true
-var new_backstab
-var weapon_left = false
 var rolling = 0
 
 func _ready() -> void:
@@ -32,17 +26,9 @@ func _ready() -> void:
 	GameManager.MARKER_HEAD = marker_head
 	GameManager.MARKER_FEET_2 = marker_feet_2
 	GameManager.MARKER_HEAD_2 = marker_head_2
-	# making an instace of the weapon
-	new_backstab = backstab.instantiate()
-	add_child(new_backstab)
 	
 func _process(_delta: float) -> void:
-	if weapon_left:
-		new_backstab.global_position = marker_weapon_left.global_position
-		$Player_Sprite.flip_h = 1
-	else:
-		new_backstab.global_position = marker_weapon_right.global_position
-		$Player_Sprite.flip_h = 0
+
 	
 	if rolling == 0:
 		if velocity.x > 0 || velocity.x < 0:
@@ -78,16 +64,12 @@ func get_input() -> void:
 	if rolling == 0:
 		if Input.is_action_pressed("left"):
 			velocity.x = -RUN_SPEED
-			weapon_left = true
+			$Player_Sprite.flip_h = 1
 
-			if new_backstab.animation_player.is_playing():
-				new_backstab.swap_animation_side("left")
 		elif Input.is_action_pressed("right"):
 			velocity.x = RUN_SPEED
-			weapon_left = false
+			$Player_Sprite.flip_h = 0
 
-			if new_backstab.animation_player.is_playing():
-				new_backstab.swap_animation_side("right")
 		elif Input.is_action_pressed("Down"):
 			pass
 	else:
@@ -106,40 +88,7 @@ func get_input() -> void:
 	if Input.is_action_just_released("Roll"):
 		rolling = 2
 	
-	# weapon swing
-	if Input.is_action_just_pressed("left_click"):
-		new_backstab.swing(weapon_left)
 
-
-#func ground_shadow() -> void:
-	#if is_reloaded == false:
-		#return
-#
-	#var in_range = get_in_range()
-	#
-	#var new_ground_shadow = GROUND_SHADOW.instantiate()
-	#if get_parent() && in_range:
-		#get_parent().add_child(new_ground_shadow)
-		#new_ground_shadow.global_position = get_global_mouse_position()
-		#
-		#reload_timer.start()
-		#is_reloaded = false
-		#SignalManager.shadow_reload.emit()
-
-#func get_in_range() -> bool:
-	#var curr_range = global_position - get_global_mouse_position()
-	#var params = {
-		#"x": curr_range.x <= 200 && curr_range.x >= -100,
-		#"y": curr_range.x <= 200 && curr_range.x >= -100
-	#}
-	#if params.x && params.y:
-		#return true
-	#return false
-
-# might be useful if we make a ranged attack
-# TODO need to decide
-func _on_reload_timer_timeout() -> void:
-	is_reloaded = true
 
 
 func _on_player_animation_tree_animation_finished(anim_name):

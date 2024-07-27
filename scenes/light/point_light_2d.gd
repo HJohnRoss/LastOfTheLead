@@ -10,7 +10,7 @@ extends PointLight2D
 
 var player
 const red = Color(1, 0, 0)
-const white = Color(1, 1, 1)
+const white = Color(1, 1, 1, 0.2)
 
 # if the player can take damage from this enemy
 var is_damagable = true
