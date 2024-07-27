@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://jlood4k8vocs" path="res://scenes/ui/game_ui.tscn" id="7_l1y7t"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2ribg"]
-size = Vector2(21.3333, 29.3333)
+size = Vector2(12.8889, 29.3333)
 
 [sub_resource type="Animation" id="Animation_ep1xm"]
 resource_name = "Crouch"
@@ -443,7 +443,7 @@ metadata/_aseprite_wizard_interface_config_ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(7.94729e-08, -2)
+position = Vector2(0.5, -1.99999)
 scale = Vector2(0.75, 0.75)
 shape = SubResource("RectangleShape2D_2ribg")
 

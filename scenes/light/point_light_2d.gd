@@ -18,8 +18,7 @@ var is_damagable = true
 func _process(_delta: float) -> void:
 	player_in_light()
 	#TODO change, add a pathing for enemys instead of looking
-	if player:
-		look_at(player.global_position)
+
 
 func player_in_light():
 	# this was a pain

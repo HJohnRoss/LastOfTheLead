@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://24cpksp7nedu"]
 
-[ext_resource type="Texture2D" uid="uid://xtn5d3nrimnn" path="res://assets/temp/Light.png" id="1_y0y7m"]
+[ext_resource type="Texture2D" uid="uid://5eb8e3sjsrhi" path="res://assets/temp/Light.png" id="1_y0y7m"]
 [ext_resource type="Script" path="res://scenes/light/point_light_2d.gd" id="2_xj06h"]
 
 [node name="PointLight2D" type="PointLight2D"]

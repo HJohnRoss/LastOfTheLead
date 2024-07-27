@@ -1,10 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://vcyql0fvj26"]
+[gd_scene load_steps=7 format=3 uid="uid://vcyql0fvj26"]
 
 [ext_resource type="Script" path="res://scenes/wizard/wizard.gd" id="1_8aw3p"]
 [ext_resource type="Texture2D" uid="uid://b8ec0b6jhh1jq" path="res://scenes/level_1/enemy_walk.png" id="2_kub2m"]
 [ext_resource type="PackedScene" uid="uid://24cpksp7nedu" path="res://scenes/light/point_light_2d.tscn" id="2_yhb3h"]
-
-[sub_resource type="CanvasTexture" id="CanvasTexture_xgjht"]
 
 [sub_resource type="Animation" id="Animation_w28xn"]
 length = 0.8
@@ -40,20 +38,17 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vwblx"]
-size = Vector2(22, 32)
+size = Vector2(29, 99)
 
 [node name="CharacterBody2D" type="CharacterBody2D" groups=["enemy"]]
 script = ExtResource("1_8aw3p")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(0.391122, 0.00189058, 0.808025, 1)
-position = Vector2(-1.78814e-07, 0)
-scale = Vector2(22, 32)
-texture = SubResource("CanvasTexture_xgjht")
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
 
 [node name="Basic_Alchemist_Sprite" type="Sprite2D" parent="."]
 texture_filter = 1
-position = Vector2(-5, 18)
 rotation = 6.28319
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("2_kub2m")
@@ -82,6 +77,10 @@ libraries = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-5, 2)
 shape = SubResource("RectangleShape2D_vwblx")
 
 [node name="PointLight2D" parent="." instance=ExtResource("2_yhb3h")]
+position = Vector2(20, -18)
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
