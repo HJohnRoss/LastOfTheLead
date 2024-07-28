@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://cga6vvddkquy2"]
 
 [ext_resource type="PackedScene" uid="uid://d03q4bemjddqu" path="res://scenes/player/player.tscn" id="1_0u8j3"]
-[ext_resource type="PackedScene" uid="uid://vcyql0fvj26" path="res://scenes/wizard/wizard.tscn" id="2_lbeue"]
+[ext_resource type="PackedScene" uid="uid://vcyql0fvj26" path="res://scenes/Alchemist/wizard.tscn" id="2_lbeue"]
 [ext_resource type="TileSet" uid="uid://daehrjcbr3ygo" path="res://assets/tilemap/Stone_brick.tres" id="3_f7v0a"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_gqqwt"]

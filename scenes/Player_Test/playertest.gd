@@ -7,7 +7,8 @@ extends CharacterBody2D
 @onready var marker_feet: Marker2D = $Node2D/MarkerFeet
 @onready var marker_feet_2: Marker2D = $Node2D/MarkerFeet2
 @onready var tree : AnimationTree = $Player_Animation_Tree
-
+@onready var animationPlayer : AnimationPlayer = $Player_Animation
+@onready var mask4 : Timer = $Timer
 
 @export var backstab: PackedScene
 
@@ -19,6 +20,8 @@ const JUMP_VELOCITY: float = -600.0
 
 var rolling = 0
 var crouching = 0
+var dead = false
+var permeable = true
 
 func _ready() -> void:
 	# setting up the global variables for raytracers
@@ -27,34 +30,40 @@ func _ready() -> void:
 	GameManager.MARKER_HEAD = marker_head
 	GameManager.MARKER_FEET_2 = marker_feet_2
 	GameManager.MARKER_HEAD_2 = marker_head_2
+	GameManager.Spawn_Point = get("position")
 	
 func _process(_delta: float) -> void:
-
-	
-	if rolling == 0:
-		if velocity.x > 0 || velocity.x < 0:
-			tree.set("parameters/Ground_h/transition_request", "Run")
-		else:
-			tree.set("parameters/Ground_h/transition_request", "Idle")
-	elif rolling == 1:
-		tree.set("parameters/Ground_h/transition_request", "Roll")
-	elif rolling == 2:
-		tree.set("parameters/Ground_h/transition_request", "Unroll")
-	
-	if crouching == 1:
-		tree.set("parameters/Ground_h/transition_request", "Crouch")
-	elif crouching == 2:
-		tree.set("parameters/Ground_h/transition_request", "Stand")
-	# disabling the player when ded
-	# TODO get dead screen and checkpoints per level
-	if !is_on_floor():
-		if(velocity.y < 0):
-			tree.set("parameters/Ground_h/transition_request", "Jump")
-		else:
-			tree.set("parameters/Ground_h/transition_request", "Fall")
-	if GameManager.PLAYER_HEALTH <= 0:
+	set_collision_mask_value(4, permeable)
+	if dead:
+		tree.set("parameters/TimeScale/scale", 2)
+		tree.set("parameters/Ground_h/transition_request", "Death")
 		set_physics_process(false)
 		set_process(false)
+	else:
+		tree.set("parameters/TimeScale/scale", 1)
+		if rolling == 0:
+			if velocity.x > 0 || velocity.x < 0:
+				tree.set("parameters/Ground_h/transition_request", "Run")
+			else:
+				tree.set("parameters/Ground_h/transition_request", "Idle")
+		elif rolling == 1:
+			tree.set("parameters/Ground_h/transition_request", "Roll")
+		elif rolling == 2:
+			tree.set("parameters/Ground_h/transition_request", "Unroll")
+		
+		if crouching == 1:
+			tree.set("parameters/Ground_h/transition_request", "Crouch")
+		elif crouching == 2:
+			tree.set("parameters/Ground_h/transition_request", "Stand")
+		# disabling the player when ded
+		# TODO get dead screen and checkpoints per level
+		if !is_on_floor():
+			if(velocity.y < 0):
+				tree.set("parameters/Ground_h/transition_request", "Jump")
+			else:
+				tree.set("parameters/Ground_h/transition_request", "Fall")
+	if GameManager.PLAYER_HEALTH <= 0:
+		dead = true
 
 func _physics_process(delta: float) -> void:
 	# updating the position of the weapon (im convinced there is a better way)
@@ -70,6 +79,10 @@ func _physics_process(delta: float) -> void:
 func get_input() -> void:
 	velocity.x = 0
 	#player input
+	
+	if Input.is_action_just_pressed("Suicide"):
+		dead = true
+	
 	if Input.is_action_pressed("Roll"):
 		rolling = 1
 	if rolling == 0:
@@ -85,7 +98,8 @@ func get_input() -> void:
 	
 	if Input.is_action_just_pressed("jump") && is_on_floor():
 		if Input.is_action_pressed("Down"):
-			position.y += 1
+			permeable = false
+			mask4.start()
 		else:
 			velocity.y = JUMP_VELOCITY
 	
@@ -97,11 +111,21 @@ func get_input() -> void:
 	
 	if Input.is_action_just_released("Down"):
 		crouching = 2
-
-
+	
 
 func _on_player_animation_tree_animation_finished(anim_name):
 	if anim_name == "Unroll":
 		rolling = 0
 	if anim_name == "Stand":
 		crouching = 0
+	if anim_name == "Death":
+		dead = false
+		set_physics_process(true)
+		set_process(true)
+		visible = true
+		GameManager.Spawn_Player = true
+		GameManager.PLAYER_HEALTH = 10
+
+
+func _on_timer_timeout():
+	permeable = true

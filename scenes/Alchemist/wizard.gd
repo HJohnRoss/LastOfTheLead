@@ -10,8 +10,6 @@ class_name Wizard
 
 func incoming_damage(damage) -> void:
 	health -= damage
-	if health == 0:
-		queue_free()
 		
 func _process(_delta):
 		if PointLight.player:

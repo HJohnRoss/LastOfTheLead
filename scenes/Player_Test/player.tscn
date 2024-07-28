@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://bgipgn30b8erw"]
+[gd_scene load_steps=36 format=3 uid="uid://bgipgn30b8erw"]
 
 [ext_resource type="Script" path="res://scenes/Player_Test/playertest.gd" id="1_q3r7g"]
 [ext_resource type="Texture2D" uid="uid://240ietrd4tk7" path="res://scenes/player/Player_crouch.png" id="3_ari80"]
@@ -6,9 +6,10 @@
 [ext_resource type="Texture2D" uid="uid://bkpj557f1wnhw" path="res://scenes/player/Lead_idle_animation.png" id="3_sbonw"]
 [ext_resource type="Texture2D" uid="uid://xarv87uather" path="res://scenes/player/Player_fall.png" id="3_t5qti"]
 [ext_resource type="Texture2D" uid="uid://dvvipqlyw4fgy" path="res://scenes/player/Lead_run_animation.png" id="4_7aeer"]
+[ext_resource type="Texture2D" uid="uid://dydp52vm4mtd2" path="res://scenes/player/Death_animation.png" id="4_pn372"]
 [ext_resource type="Texture2D" uid="uid://ccg8evjlwwv5q" path="res://scenes/player/Lead_run_transition.png" id="5_6ummp"]
 [ext_resource type="Texture2D" uid="uid://ue2l7uqujmie" path="res://scenes/player/Player_into_roll_animation.png" id="6_if2q3"]
-[ext_resource type="PackedScene" uid="uid://jlood4k8vocs" path="res://scenes/ui/game_ui.tscn" id="7_l1y7t"]
+[ext_resource type="PackedScene" uid="uid://dlfq75xfa8y5p" path="res://scenes/pauseMenu/pause_menu.tscn" id="10_3gwul"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2ribg"]
 size = Vector2(12.8889, 29.3333)
@@ -67,6 +68,55 @@ tracks/3/keys = {
 
 [sub_resource type="Animation" id="Animation_52a5h"]
 resource_name = "Death"
+length = 2.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("4_pn372")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [14]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:vframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 6, 7, 8, 9, 10, 11, 12]
+}
 
 [sub_resource type="Animation" id="Animation_wqos2"]
 resource_name = "Fall"
@@ -568,6 +618,7 @@ _data = {
 animation = &"Crouch"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_aklrv"]
+animation = &"Death"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_h13kc"]
 animation = &"Fall"
@@ -600,6 +651,9 @@ input_7/reset = true
 input_8/name = "Stand"
 input_8/auto_advance = false
 input_8/reset = true
+input_9/name = "state_9"
+input_9/auto_advance = false
+input_9/reset = true
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ygjqs"]
 animation = &"Idle"
@@ -616,15 +670,17 @@ animation = &"Running"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6vexg"]
 animation = &"Stand"
 
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_3e5xg"]
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5r7dd"]
 animation = &"Unroll"
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_86gix"]
-graph_offset = Vector2(-199.093, 212.224)
+graph_offset = Vector2(-245.931, 198.147)
 nodes/Crouch/node = SubResource("AnimationNodeAnimation_kixrx")
 nodes/Crouch/position = Vector2(80, 480)
 nodes/Death/node = SubResource("AnimationNodeAnimation_aklrv")
-nodes/Death/position = Vector2(-40, 240)
+nodes/Death/position = Vector2(-480, 260)
 nodes/Fall/node = SubResource("AnimationNodeAnimation_h13kc")
 nodes/Fall/position = Vector2(-60, 400)
 nodes/Ground_h/node = SubResource("AnimationNodeTransition_undrx")
@@ -639,15 +695,20 @@ nodes/Run/node = SubResource("AnimationNodeAnimation_twcnb")
 nodes/Run/position = Vector2(140, 140)
 nodes/Stand/node = SubResource("AnimationNodeAnimation_6vexg")
 nodes/Stand/position = Vector2(260, 520)
+nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_3e5xg")
+nodes/TimeScale/position = Vector2(-200, 240)
 nodes/Unroll/node = SubResource("AnimationNodeAnimation_5r7dd")
 nodes/Unroll/position = Vector2(80, 300)
 nodes/output/position = Vector2(1020, 40)
-node_connections = [&"Ground_h", 0, &"Idle", &"Ground_h", 1, &"Run", &"Ground_h", 2, &"Roll", &"Ground_h", 3, &"Death", &"Ground_h", 4, &"Unroll", &"Ground_h", 5, &"Jump", &"Ground_h", 6, &"Fall", &"Ground_h", 7, &"Crouch", &"Ground_h", 8, &"Stand", &"output", 0, &"Ground_h"]
+node_connections = [&"Ground_h", 0, &"Idle", &"Ground_h", 1, &"Run", &"Ground_h", 2, &"Roll", &"Ground_h", 3, &"TimeScale", &"Ground_h", 4, &"Unroll", &"Ground_h", 5, &"Jump", &"Ground_h", 6, &"Fall", &"Ground_h", 7, &"Crouch", &"Ground_h", 8, &"Stand", &"TimeScale", 0, &"Death", &"output", 0, &"Ground_h"]
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 scale = Vector2(3, 3)
 collision_mask = 6
 script = ExtResource("1_q3r7g")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
 
 [node name="Player_Sprite" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -688,25 +749,20 @@ libraries = {
 root_node = NodePath("../Player_Sprite")
 tree_root = SubResource("AnimationNodeBlendTree_86gix")
 anim_player = NodePath("../Player_Animation")
-parameters/Ground_h/current_state = "Death"
+parameters/Ground_h/current_state = "state_9"
 parameters/Ground_h/transition_request = ""
-parameters/Ground_h/current_index = 3
-
-[node name="ReloadTimer" type="Timer" parent="."]
-wait_time = 12.0
-one_shot = true
+parameters/Ground_h/current_index = 9
+parameters/TimeScale/scale = 1.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="pauseMenu" parent="Camera2D" instance=ExtResource("10_3gwul")]
 
 [node name="MarkerWeaponRight" type="Marker2D" parent="."]
 position = Vector2(10, -1)
 
 [node name="MarkerWeaponLeft" type="Marker2D" parent="."]
 position = Vector2(-10, -1)
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="UI" parent="CanvasLayer" instance=ExtResource("7_l1y7t")]
 
 [node name="Node2D" type="Node2D" parent="."]
 
@@ -722,5 +778,5 @@ position = Vector2(8, 15)
 [node name="MarkerFeet2" type="Marker2D" parent="Node2D"]
 position = Vector2(-8, 15)
 
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="animation_finished" from="Player_Animation_Tree" to="." method="_on_player_animation_tree_animation_finished"]
-[connection signal="timeout" from="ReloadTimer" to="." method="_on_reload_timer_timeout"]

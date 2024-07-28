@@ -59,8 +59,7 @@ func damage_player() -> void:
 func _on_damage_timer_timeout() -> void:
 	#making the player able to take damage again
 	damage_timer.stop()
-	if GameManager.PLAYER_HEALTH > 0:
-		is_damagable = true
+	is_damagable = true
 
 func _on_area2D_body_entered(body):
 	#saving the player object when it goes inside of the collision

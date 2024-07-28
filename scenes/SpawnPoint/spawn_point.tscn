@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://cpinr4o8l4t4a"]
+
+[ext_resource type="Script" path="res://scenes/SpawnPoint/Spawn point.gd" id="1_ull56"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wqyi0"]
+size = Vector2(1, 1)
+
+[node name="Spawn point" type="Sprite2D"]
+script = ExtResource("1_ull56")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2048
+collision_mask = 2048
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_wqyi0")
