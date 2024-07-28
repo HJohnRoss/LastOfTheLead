@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 class_name Wizard
 
-@onready var potion = preload("res://scenes/Alchemist/Potion_Projectile.tscn")
+@onready var potion: PackedScene = preload("res://scenes/Alchemist/Potion_Projectile.tscn")
 
 @export var health = 1;
 @onready var sprite = $Basic_Alchemist_Sprite
@@ -15,6 +15,7 @@ func incoming_damage(damage) -> void:
 	health -= damage
 		
 func _process(_delta):
+		GameManager.AlchMarker = get("position")
 		if PointLight.player:
 			throw_potion()
 
@@ -36,8 +37,9 @@ func throw_potion():
 	if !thrown:
 		var potion_instance = potion.instantiate()
 		add_child(potion_instance)
-		thrown = true
+		thrown = false
 
 func _on_timer_timeout():
 	turn_around()
+	pass
 	

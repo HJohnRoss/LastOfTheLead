@@ -31,10 +31,11 @@ func _ready() -> void:
 	GameManager.MARKER_HEAD = marker_head
 	GameManager.MARKER_FEET_2 = marker_feet_2
 	GameManager.MARKER_HEAD_2 = marker_head_2
+	GameManager.DEATH_MARKER = DeathMarker
 	GameManager.Spawn_Point = get("position")
 	
 func _process(_delta: float) -> void:
-	GameManager.DeathMarker = DeathMarker.get("position")
+
 	set_collision_mask_value(4, permeable)
 	if dead:
 		tree.set("parameters/TimeScale/scale", 2)

@@ -6,6 +6,8 @@ extends PointLight2D
 @onready var ray_cast_2d_4: RayCast2D = $RayCast2D4
 @onready var ray_cast_2d_5: RayCast2D = $RayCast2D5
 
+
+
 @onready var damage_timer: Timer = $DamageTimer
 
 var player
@@ -54,6 +56,7 @@ func damage_player() -> void:
 	damage_timer.start()
 	# emiting to the ui to update player hp
 	SignalManager.player_lose_health.emit()
+	
 
 
 func _on_damage_timer_timeout() -> void:

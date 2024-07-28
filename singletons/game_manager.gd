@@ -13,6 +13,7 @@ var MARKER_FEET: Marker2D
 var MARKER_FEET_2: Marker2D
 var MARKER_HEAD: Marker2D
 var MARKER_HEAD_2: Marker2D
-var DeathMarker: Vector2
+var DEATH_MARKER: Marker2D
+var AlchMarker: Vector2
 
 
