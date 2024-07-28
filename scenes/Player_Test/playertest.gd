@@ -6,6 +6,7 @@ extends CharacterBody2D
 @onready var marker_head_2: Marker2D = $Node2D/MarkerHead2
 @onready var marker_feet: Marker2D = $Node2D/MarkerFeet
 @onready var marker_feet_2: Marker2D = $Node2D/MarkerFeet2
+@onready var DeathMarker: Marker2D = $Node2D/DeathMarker
 @onready var tree : AnimationTree = $Player_Animation_Tree
 @onready var animationPlayer : AnimationPlayer = $Player_Animation
 @onready var mask4 : Timer = $Timer
@@ -33,6 +34,7 @@ func _ready() -> void:
 	GameManager.Spawn_Point = get("position")
 	
 func _process(_delta: float) -> void:
+	GameManager.DeathMarker = DeathMarker.get("position")
 	set_collision_mask_value(4, permeable)
 	if dead:
 		tree.set("parameters/TimeScale/scale", 2)

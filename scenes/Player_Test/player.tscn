@@ -757,6 +757,7 @@ parameters/TimeScale/scale = 1.0
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="pauseMenu" parent="Camera2D" instance=ExtResource("10_3gwul")]
+visible = false
 
 [node name="MarkerWeaponRight" type="Marker2D" parent="."]
 position = Vector2(10, -1)
@@ -777,6 +778,8 @@ position = Vector2(8, 15)
 
 [node name="MarkerFeet2" type="Marker2D" parent="Node2D"]
 position = Vector2(-8, 15)
+
+[node name="DeathMarker" type="Marker2D" parent="Node2D"]
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="animation_finished" from="Player_Animation_Tree" to="." method="_on_player_animation_tree_animation_finished"]

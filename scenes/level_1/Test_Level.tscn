@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://xvcst72bdb4u"]
+[gd_scene load_steps=11 format=3 uid="uid://xvcst72bdb4u"]
 
 [ext_resource type="Texture2D" uid="uid://cqk3rdo71xjvy" path="res://assets/tilemap/Background.png" id="2_pmrge"]
 [ext_resource type="PackedScene" uid="uid://vcyql0fvj26" path="res://scenes/Alchemist/wizard.tscn" id="2_ro7ne"]
 [ext_resource type="PackedScene" uid="uid://bgipgn30b8erw" path="res://scenes/Player_Test/player.tscn" id="3_rwleo"]
 [ext_resource type="Texture2D" uid="uid://cvviuv2drfu3d" path="res://assets/tilemap/merged_stone_wall_set.png" id="4_gmcqa"]
 [ext_resource type="PackedScene" uid="uid://cpinr4o8l4t4a" path="res://scenes/SpawnPoint/spawn_point.tscn" id="4_ihaj5"]
+[ext_resource type="PackedScene" uid="uid://b5i4jk2y3kajw" path="res://scenes/Alchemist/Potion_Projectile.tscn" id="6_brddn"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ysnwo"]
 texture = ExtResource("2_pmrge")
@@ -1891,6 +1892,9 @@ rotation = -3.14159
 scale = Vector2(113, -113)
 
 [node name="Player" parent="Spawn point" instance=ExtResource("3_rwleo")]
-position = Vector2(-0.0265485, 0.0265494)
+position = Vector2(-0.0265484, 0.0265493)
 rotation = -3.14159
 scale = Vector2(0.0265487, -0.0265487)
+
+[node name="Potion" parent="." instance=ExtResource("6_brddn")]
+position = Vector2(968, 965)
