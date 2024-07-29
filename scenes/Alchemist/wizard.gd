@@ -22,6 +22,7 @@ var displacement = 0
 var walk = false
 var thrown = false
 var thrown_anim = false
+var dead = false
 var direction = 1
 
 #CONTROL VARIABLES
@@ -35,27 +36,33 @@ func incoming_damage(damage) -> void:
 	health -= damage
 		
 func _process(delta):
-		walkTimer.set("wait_time", walkTime)
-		turnAroundTimer.set("wait_time", turnTime + walkTime)
-		if turned:
-			turn_around()
-			turned = false
-		if PointLight.player:
-			throw_potion()
-			thrown_anim = true
-
-		if walk:
-			if !thrown_anim:
-				anim.play("Walking")
-			else:
-				anim.play("Throwing")
-			position.x += 100 * delta * direction
-			displacement += 100 * delta * direction
+		if dead:
+			anim.speed_scale = 4
+			anim.play("Death")
+			set_physics_process(false)
+			set_process(false)
 		else:
-			if !thrown_anim:
-				anim.play("Idle")
+			walkTimer.set("wait_time", walkTime)
+			turnAroundTimer.set("wait_time", turnTime + walkTime)
+			if turned:
+				turn_around()
+				turned = false
+			if PointLight.player:
+				throw_potion()
+				thrown_anim = true
+
+			if walk:
+				if !thrown_anim:
+					anim.play("Walking")
+				else:
+					anim.play("Throwing")
+				position.x += 100 * delta * direction
+				displacement += 100 * delta * direction
 			else:
-				anim.play("Throwing")
+				if !thrown_anim:
+					anim.play("Idle")
+				else:
+					anim.play("Throwing")
 				
 func _physics_process(delta):
 	if !is_on_floor():
@@ -114,4 +121,12 @@ func setup():
 
 
 func _on_basic_alchemist_animation_animation_finished(anim_name):
-	thrown_anim = false
+	if anim_name == "Throwing":
+		thrown_anim = false
+	if anim_name == "Death":
+		queue_free()
+
+
+func _on_area_2d_area_entered(area):
+	if area.name == "Stomp":
+		dead = true

@@ -15,9 +15,9 @@ extends CharacterBody2D
 
 const GRAVITY: float = 1000.0
 const RUN_SPEED: float = 240.0
-const MAX_FALL: float = 400.0
+const MAX_FALL: float = 800.0
 const HURT_TIME: float = 0.3
-const JUMP_VELOCITY: float = -600.0
+const JUMP_VELOCITY: float = -625.0
 
 var rolling = 0
 var crouching = 0
