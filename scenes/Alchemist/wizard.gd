@@ -9,9 +9,10 @@ class_name Wizard
 @onready var collision = $CollisionShape2D
 @onready var PointLight = $PointLight2D
 @onready var turnAroundTimer = $TurnAroundTimer
+@onready var throwTime = $ThrowTimer
 @onready var walkTimer = $WalkTimer
 
-var walk = true
+var walk = false
 var thrown = false
 var direction = 1
 
@@ -47,6 +48,7 @@ func turn_around():
 		direction = -1
 		walk = true
 		walkTimer.start()
+		turnAroundTimer.start()
 	else:
 		sprite.flip_h = true
 		collision.position.x *= -1
@@ -56,19 +58,38 @@ func turn_around():
 		direction = 1
 		walk = true
 		walkTimer.start()
+		turnAroundTimer.start()
 
 func throw_potion():
 	if !thrown:
 		var potion_instance = potion.instantiate()
 		add_child(potion_instance)
 		thrown = true
+		throwTime.start()
+		
 
-func _on_timer_timeout():
-	turn_around()
-	pass
+
 	
 
+func _on_turn_around_timer_timeout():
+	turn_around()
 
 func _on_walk_timer_timeout():
 	walk = false
+
+
+
+func _on_throw_timer_timeout():
+	thrown = false
+	
+	
+func setup():
+	walkTimer.set("wait_time", walkTime)
+	turnAroundTimer.set("wait_time", turnTime)
+	walkTimer.start()
 	turnAroundTimer.start()
+	if turned:
+		turn_around()
+		turned = false
+
+

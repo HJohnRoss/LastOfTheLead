@@ -61,8 +61,9 @@ func player_in_light():
 
 func _on_damage_timer_timeout() -> void:
 	#making the player able to take damage again
-	damage_timer.stop()
-	is_damagable = true
+	#damage_timer.stop()
+	#is_damagable = true
+	pass
 
 func _on_area2D_body_entered(body):
 	#saving the player object when it goes inside of the collision
