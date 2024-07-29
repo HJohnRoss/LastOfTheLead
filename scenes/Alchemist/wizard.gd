@@ -28,7 +28,7 @@ func incoming_damage(damage) -> void:
 		
 func _process(delta):
 		walkTimer.set("wait_time", walkTime)
-		turnAroundTimer.set("wait_time", turnTime)
+		turnAroundTimer.set("wait_time", turnTime + walkTime)
 		if turned:
 			turn_around()
 			turned = false
@@ -85,7 +85,7 @@ func _on_throw_timer_timeout():
 	
 func setup():
 	walkTimer.set("wait_time", walkTime)
-	turnAroundTimer.set("wait_time", turnTime)
+	turnAroundTimer.set("wait_time", turnTime + walkTime)
 	walkTimer.start()
 	turnAroundTimer.start()
 	if turned:
