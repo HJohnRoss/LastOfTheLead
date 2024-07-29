@@ -34,28 +34,28 @@ func player_in_light():
 		ray_cast_2d_5.look_at(GameManager.MARKER_HEAD_2.global_position)
 
 		# if the raycast is colliding and its colliding with the player
-		if ray_cast_2d.is_colliding() && ray_cast_2d.get_collider().name == "Player":
-			damage_player()
-		elif ray_cast_2d_2.is_colliding() && ray_cast_2d_2.get_collider().name == "Player":
-			damage_player()
-		elif ray_cast_2d_3.is_colliding() && ray_cast_2d_3.get_collider().name == "Player":
-			damage_player()
-		elif ray_cast_2d_4.is_colliding() && ray_cast_2d_4.get_collider().name == "Player":
-			damage_player()
-		elif ray_cast_2d_5.is_colliding() && ray_cast_2d_5.get_collider().name == "Player":
-			damage_player()
+		#if ray_cast_2d.is_colliding() && ray_cast_2d.get_collider().name == "Player":
+			#damage_player()
+		#elif ray_cast_2d_2.is_colliding() && ray_cast_2d_2.get_collider().name == "Player":
+			#damage_player()
+		#elif ray_cast_2d_3.is_colliding() && ray_cast_2d_3.get_collider().name == "Player":
+			#damage_player()
+		#elif ray_cast_2d_4.is_colliding() && ray_cast_2d_4.get_collider().name == "Player":
+			#damage_player()
+		#elif ray_cast_2d_5.is_colliding() && ray_cast_2d_5.get_collider().name == "Player":
+			#damage_player()
 
 
-func damage_player() -> void:
-	#TODO make the red a animation so it can play for about 2 seconds
-	GameManager.PLAYER_HEALTH -= 1
-	color = red
-	# makes the player not take damage
-	is_damagable = false
-	# starting the timer till the player can take dmg again
-	damage_timer.start()
-	# emiting to the ui to update player hp
-	SignalManager.player_lose_health.emit()
+#func damage_player() -> void:
+	##TODO make the red a animation so it can play for about 2 seconds
+	#GameManager.PLAYER_HEALTH -= 1
+	#color = red
+	## makes the player not take damage
+	#is_damagable = false
+	## starting the timer till the player can take dmg again
+	#damage_timer.start()
+	## emiting to the ui to update player hp
+	#SignalManager.player_lose_health.emit()
 	
 
 

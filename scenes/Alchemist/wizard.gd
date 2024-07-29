@@ -28,12 +28,14 @@ func turn_around():
 		PointLight.position.x *= -1
 		PointLight.position.y += 3
 		PointLight.rotation_degrees = -180
+		walk = true
 	else:
 		sprite.flip_h = true
 		collision.position.x *= -1
 		PointLight.position.x *= -1
 		PointLight.position.y -= 3
 		PointLight.rotation_degrees = 0
+		walk = true
 
 func throw_potion():
 	if !thrown:
