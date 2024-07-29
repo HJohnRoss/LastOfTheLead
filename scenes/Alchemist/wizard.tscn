@@ -1,49 +1,288 @@
-[gd_scene load_steps=7 format=3 uid="uid://vcyql0fvj26"]
+[gd_scene load_steps=14 format=3 uid="uid://vcyql0fvj26"]
 
 [ext_resource type="Script" path="res://scenes/Alchemist/wizard.gd" id="1_8aw3p"]
 [ext_resource type="Texture2D" uid="uid://b8ec0b6jhh1jq" path="res://scenes/level_1/enemy_walk.png" id="2_kub2m"]
 [ext_resource type="PackedScene" uid="uid://24cpksp7nedu" path="res://scenes/light/point_light_2d.tscn" id="2_yhb3h"]
+[ext_resource type="Texture2D" uid="uid://jpugn8fgsvns" path="res://scenes/Alchemist/enemy.png" id="3_6fg6e"]
+[ext_resource type="Texture2D" uid="uid://ccf6nf3q33ook" path="res://scenes/Alchemist/enemy_attack_animation.png" id="4_q2grx"]
+[ext_resource type="Texture2D" uid="uid://plehj06o3xeu" path="res://scenes/Alchemist/enemy_death.png" id="5_bs3b2"]
 
-[sub_resource type="Animation" id="Animation_w28xn"]
-length = 0.8
-loop_mode = 1
+[sub_resource type="Animation" id="Animation_fxtrr"]
+resource_name = "Idle"
+length = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Basic_Alchemist_Sprite:visible")
+tracks/0/path = NodePath("Basic_Alchemist_Sprite:texture")
 tracks/0/interp = 1
-tracks/0/loop_wrap = false
+tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
+"values": [ExtResource("3_6fg6e")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Basic_Alchemist_Sprite:frame")
+tracks/1/path = NodePath("Basic_Alchemist_Sprite:hframes")
 tracks/1/interp = 1
-tracks/1/loop_wrap = false
+tracks/1/loop_wrap = true
 tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Basic_Alchemist_Sprite:vframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Basic_Alchemist_Sprite:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_w28xn"]
+resource_name = "Walking"
+length = 0.7
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Basic_Alchemist_Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_kub2m")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Basic_Alchemist_Sprite:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Basic_Alchemist_Sprite:vframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Basic_Alchemist_Sprite:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 1, 0, 3, 4, 3]
 }
 
+[sub_resource type="Animation" id="Animation_gus6u"]
+resource_name = "Throwing"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Basic_Alchemist_Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("4_q2grx")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Basic_Alchemist_Sprite:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Basic_Alchemist_Sprite:vframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Basic_Alchemist_Sprite:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_4wt10"]
+resource_name = "Death"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Basic_Alchemist_Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("5_bs3b2")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Basic_Alchemist_Sprite:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [7]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Basic_Alchemist_Sprite:vframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Basic_Alchemist_Sprite:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+
+[sub_resource type="Animation" id="Animation_j0by0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Basic_Alchemist_Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_kub2m")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Basic_Alchemist_Sprite:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Basic_Alchemist_Sprite:vframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Basic_Alchemist_Sprite:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_wn580"]
 _data = {
-"default": SubResource("Animation_w28xn")
+"Death": SubResource("Animation_4wt10"),
+"Idle": SubResource("Animation_fxtrr"),
+"RESET": SubResource("Animation_j0by0"),
+"Throwing": SubResource("Animation_gus6u"),
+"Walking": SubResource("Animation_w28xn")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vwblx"]
 size = Vector2(29, 99)
 
 [node name="CharacterBody2D" type="CharacterBody2D" groups=["enemy"]]
+collision_layer = 4
+collision_mask = 10
 script = ExtResource("1_8aw3p")
-
-[node name="ThrowTimer" type="Timer" parent="."]
 
 [node name="TurnAroundTimer" type="Timer" parent="."]
 
@@ -51,13 +290,11 @@ script = ExtResource("1_8aw3p")
 
 [node name="Basic_Alchemist_Sprite" type="Sprite2D" parent="."]
 texture_filter = 1
-rotation = 6.28319
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("2_kub2m")
 flip_h = true
 hframes = 3
 vframes = 2
-frame = 3
 metadata/_aseprite_wizard_config_ = {
 "i_mode": -1,
 "keep_anim_length": false,
@@ -72,8 +309,7 @@ metadata/_aseprite_wizard_config_ = {
 }
 metadata/_aseprite_wizard_source_file_hash_ = "fefae8c6ecdea712cda81aa6dd883203"
 
-[node name="Basic_Alchemist_Animation" type="AnimationPlayer" parent="Basic_Alchemist_Sprite"]
-root_node = NodePath("../..")
+[node name="Basic_Alchemist_Animation" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_wn580")
 }
@@ -87,6 +323,6 @@ position = Vector2(20, -18)
 
 [node name="Marker2D" type="Marker2D" parent="."]
 
-[connection signal="timeout" from="ThrowTimer" to="." method="_on_throw_timer_timeout"]
 [connection signal="timeout" from="TurnAroundTimer" to="." method="_on_turn_around_timer_timeout"]
 [connection signal="timeout" from="WalkTimer" to="." method="_on_walk_timer_timeout"]
+[connection signal="animation_finished" from="Basic_Alchemist_Animation" to="." method="_on_basic_alchemist_animation_animation_finished"]

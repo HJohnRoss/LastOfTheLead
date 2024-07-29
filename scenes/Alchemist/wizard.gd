@@ -2,6 +2,8 @@ extends CharacterBody2D
 
 class_name Wizard
 
+var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+
 @onready var potion: PackedScene = preload("res://scenes/Alchemist/Potion_Projectile.tscn")
 
 @export var health = 1;
@@ -12,11 +14,14 @@ class_name Wizard
 @onready var throwTime = $ThrowTimer
 @onready var walkTimer = $WalkTimer
 @onready var positionMarker = $Marker2D
+@onready var anim = $Basic_Alchemist_Animation
 
-var displacement = position.x
+var displacement = 0
+
 
 var walk = false
 var thrown = false
+var thrown_anim = false
 var direction = 1
 
 #CONTROL VARIABLES
@@ -32,20 +37,30 @@ func incoming_damage(damage) -> void:
 func _process(delta):
 		walkTimer.set("wait_time", walkTime)
 		turnAroundTimer.set("wait_time", turnTime + walkTime)
-		if thrown:
-			GameManager.AlchMarker = Vector2(position.x + displacement, position.y)
 		if turned:
 			turn_around()
 			turned = false
 		if PointLight.player:
 			throw_potion()
-			print(get("position"))
-			print(displacement)
-		if walk:
-			position.x += 100 * delta * direction
-			if thrown:
-				displacement += 100 * delta * direction
+			thrown_anim = true
 
+		if walk:
+			if !thrown_anim:
+				anim.play("Walking")
+			else:
+				anim.play("Throwing")
+			position.x += 100 * delta * direction
+			displacement += 100 * delta * direction
+		else:
+			if !thrown_anim:
+				anim.play("Idle")
+			else:
+				anim.play("Throwing")
+				
+func _physics_process(delta):
+	if !is_on_floor():
+		velocity.y += gravity * delta
+	move_and_slide()
 func turn_around():
 	if sprite.flip_h:
 		sprite.flip_h = false
@@ -69,11 +84,8 @@ func turn_around():
 		turnAroundTimer.start()
 
 func throw_potion():
-	if !thrown:
-		var potion_instance = potion.instantiate()
-		add_child(potion_instance)
-		thrown = true
-		throwTime.start()
+	GameManager.AlchMarker = Vector2(position.x, position.y)
+	GameManager.throw_potion = true
 		
 
 
@@ -87,9 +99,6 @@ func _on_walk_timer_timeout():
 	displacement = 0
 
 
-
-func _on_throw_timer_timeout():
-	thrown = false
 	
 	
 func setup():
@@ -102,3 +111,7 @@ func setup():
 		turned = false
 
 
+
+
+func _on_basic_alchemist_animation_animation_finished(anim_name):
+	thrown_anim = false

@@ -11,7 +11,7 @@ func _ready():
 func _physics_process(delta):
 	if moving:
 		rotation_degrees += 300 * delta
-		position = position.move_toward(GameManager.DEATH_MARKER.global_position - GameManager.AlchMarker, 500 * delta)
+		position = position.move_toward(GameManager.DEATH_MARKER.global_position, 500 * delta)
 
 
 

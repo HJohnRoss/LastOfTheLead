@@ -2,6 +2,10 @@ extends Node2D
 
 @onready var alch1 = $Basic_Alchemist
 @onready var alch2 = $Alch2
+@onready var timer = $throw_timer
+@onready var potion: PackedScene = preload("res://scenes/Alchemist/Potion_Projectile.tscn")
+
+var throwingTime = true
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	alch1.walkTime = 2
@@ -18,4 +22,18 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	if(GameManager.throw_potion == true):
+		if throwingTime:
+			throwingTime = false
+			timer.start()
+			var pot = potion.instantiate()
+			pot.position = GameManager.AlchMarker
+			add_child(pot)
+			GameManager.throw_potion = false
+		
+	
+
+
+func _on_throw_timer_timeout():
+	GameManager.throw_potion = false
+	throwingTime = true

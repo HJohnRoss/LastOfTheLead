@@ -1864,12 +1864,16 @@ texture_region_size = Vector2i(64, 64)
 [sub_resource type="TileSet" id="TileSet_claiw"]
 tile_size = Vector2i(64, 64)
 physics_layer_0/collision_layer = 2
-physics_layer_1/collision_layer = 8
+physics_layer_0/collision_mask = 5
+physics_layer_1/collision_layer = 12
 physics_layer_1/collision_mask = 0
 sources/0 = SubResource("TileSetAtlasSource_8vgod")
 
 [node name="Test_Level" type="Node2D"]
 script = ExtResource("1_6uu4b")
+
+[node name="throw_timer" type="Timer" parent="."]
+wait_time = 2.0
 
 [node name="Background" type="TileMap" parent="."]
 position = Vector2(1, 0)
@@ -1899,3 +1903,5 @@ scale = Vector2(113, -113)
 position = Vector2(-0.0265484, 0.0265493)
 rotation = -3.14159
 scale = Vector2(0.0265487, -0.0265487)
+
+[connection signal="timeout" from="throw_timer" to="." method="_on_throw_timer_timeout"]
