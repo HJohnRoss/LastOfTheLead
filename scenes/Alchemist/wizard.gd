@@ -9,6 +9,8 @@ class_name Wizard
 @onready var collision = $CollisionShape2D
 @onready var PointLight = $PointLight2D
 @onready var timer = $Timer
+
+var walk = false
 var thrown = false
 
 func incoming_damage(damage) -> void:
@@ -37,7 +39,7 @@ func throw_potion():
 	if !thrown:
 		var potion_instance = potion.instantiate()
 		add_child(potion_instance)
-		thrown = false
+		thrown = true
 
 func _on_timer_timeout():
 	turn_around()
