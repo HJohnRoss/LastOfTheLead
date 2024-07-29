@@ -85,6 +85,8 @@ shape = SubResource("RectangleShape2D_vwblx")
 [node name="PointLight2D" parent="." instance=ExtResource("2_yhb3h")]
 position = Vector2(20, -18)
 
+[node name="Marker2D" type="Marker2D" parent="."]
+
 [connection signal="timeout" from="ThrowTimer" to="." method="_on_throw_timer_timeout"]
 [connection signal="timeout" from="TurnAroundTimer" to="." method="_on_turn_around_timer_timeout"]
 [connection signal="timeout" from="WalkTimer" to="." method="_on_walk_timer_timeout"]

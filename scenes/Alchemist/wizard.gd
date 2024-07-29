@@ -11,6 +11,9 @@ class_name Wizard
 @onready var turnAroundTimer = $TurnAroundTimer
 @onready var throwTime = $ThrowTimer
 @onready var walkTimer = $WalkTimer
+@onready var positionMarker = $Marker2D
+
+var displacement = position.x
 
 var walk = false
 var thrown = false
@@ -29,14 +32,19 @@ func incoming_damage(damage) -> void:
 func _process(delta):
 		walkTimer.set("wait_time", walkTime)
 		turnAroundTimer.set("wait_time", turnTime + walkTime)
+		if thrown:
+			GameManager.AlchMarker = Vector2(position.x + displacement, position.y)
 		if turned:
 			turn_around()
 			turned = false
-		GameManager.AlchMarker = get("position")
 		if PointLight.player:
 			throw_potion()
+			print(get("position"))
+			print(displacement)
 		if walk:
 			position.x += 100 * delta * direction
+			if thrown:
+				displacement += 100 * delta * direction
 
 func turn_around():
 	if sprite.flip_h:
@@ -76,6 +84,7 @@ func _on_turn_around_timer_timeout():
 
 func _on_walk_timer_timeout():
 	walk = false
+	displacement = 0
 
 
 
