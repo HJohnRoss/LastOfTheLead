@@ -8,18 +8,34 @@ class_name Wizard
 @onready var sprite = $Basic_Alchemist_Sprite
 @onready var collision = $CollisionShape2D
 @onready var PointLight = $PointLight2D
-@onready var timer = $Timer
+@onready var turnAroundTimer = $TurnAroundTimer
+@onready var walkTimer = $WalkTimer
 
-var walk = false
+var walk = true
 var thrown = false
+var direction = 1
+
+#CONTROL VARIABLES
+var walkTime = 1
+var turnTime = 2
+var turned = true
+
+
 
 func incoming_damage(damage) -> void:
 	health -= damage
 		
-func _process(_delta):
+func _process(delta):
+		walkTimer.set("wait_time", walkTime)
+		turnAroundTimer.set("wait_time", turnTime)
+		if turned:
+			turn_around()
+			turned = false
 		GameManager.AlchMarker = get("position")
 		if PointLight.player:
 			throw_potion()
+		if walk:
+			position.x += 100 * delta * direction
 
 func turn_around():
 	if sprite.flip_h:
@@ -28,14 +44,18 @@ func turn_around():
 		PointLight.position.x *= -1
 		PointLight.position.y += 3
 		PointLight.rotation_degrees = -180
+		direction = -1
 		walk = true
+		walkTimer.start()
 	else:
 		sprite.flip_h = true
 		collision.position.x *= -1
 		PointLight.position.x *= -1
 		PointLight.position.y -= 3
 		PointLight.rotation_degrees = 0
+		direction = 1
 		walk = true
+		walkTimer.start()
 
 func throw_potion():
 	if !thrown:
@@ -47,3 +67,8 @@ func _on_timer_timeout():
 	turn_around()
 	pass
 	
+
+
+func _on_walk_timer_timeout():
+	walk = false
+	turnAroundTimer.start()

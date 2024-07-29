@@ -43,8 +43,13 @@ size = Vector2(29, 99)
 [node name="CharacterBody2D" type="CharacterBody2D" groups=["enemy"]]
 script = ExtResource("1_8aw3p")
 
-[node name="Timer" type="Timer" parent="."]
-wait_time = 5.0
+[node name="TurnAroundTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+autostart = true
+
+[node name="WalkTimer" type="Timer" parent="."]
+one_shot = true
 autostart = true
 
 [node name="Basic_Alchemist_Sprite" type="Sprite2D" parent="."]
@@ -83,4 +88,5 @@ shape = SubResource("RectangleShape2D_vwblx")
 [node name="PointLight2D" parent="." instance=ExtResource("2_yhb3h")]
 position = Vector2(20, -18)
 
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="TurnAroundTimer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="WalkTimer" to="." method="_on_walk_timer_timeout"]

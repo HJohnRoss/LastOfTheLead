@@ -1,5 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://xvcst72bdb4u"]
+[gd_scene load_steps=11 format=3 uid="uid://xvcst72bdb4u"]
 
+[ext_resource type="Script" path="res://scenes/level_1/Test_Level.gd" id="1_6uu4b"]
 [ext_resource type="Texture2D" uid="uid://cqk3rdo71xjvy" path="res://assets/tilemap/Background.png" id="2_pmrge"]
 [ext_resource type="PackedScene" uid="uid://vcyql0fvj26" path="res://scenes/Alchemist/wizard.tscn" id="2_ro7ne"]
 [ext_resource type="PackedScene" uid="uid://bgipgn30b8erw" path="res://scenes/Player_Test/player.tscn" id="3_rwleo"]
@@ -1868,6 +1869,7 @@ physics_layer_1/collision_mask = 0
 sources/0 = SubResource("TileSetAtlasSource_8vgod")
 
 [node name="Test_Level" type="Node2D"]
+script = ExtResource("1_6uu4b")
 
 [node name="Background" type="TileMap" parent="."]
 position = Vector2(1, 0)
