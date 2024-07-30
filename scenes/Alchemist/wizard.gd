@@ -11,7 +11,6 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var collision = $CollisionShape2D
 @onready var PointLight = $PointLight2D
 @onready var turnAroundTimer = $TurnAroundTimer
-@onready var throwTime = $ThrowTimer
 @onready var walkTimer = $WalkTimer
 @onready var positionMarker = $Marker2D
 @onready var anim = $Basic_Alchemist_Animation

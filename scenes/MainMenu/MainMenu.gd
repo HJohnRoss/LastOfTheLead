@@ -14,7 +14,7 @@ func _process(delta):
 
 func _on_button_pressed():
 #TODO change to cutscene when we have it.
-	get_tree().change_scene_to_file("res://scenes/level_1/Test_Level.tscn")
+	get_tree().change_scene_to_file("res://scenes/MainMenu/Opening.tscn")
 
 
 func _on_button_2_pressed():

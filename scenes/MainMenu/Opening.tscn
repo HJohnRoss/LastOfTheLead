@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://dlor5xovt8vh3"]
+
+[ext_resource type="Script" path="res://scenes/MainMenu/Opening.gd" id="1_i3v6i"]
+[ext_resource type="Texture2D" uid="uid://b3oai8uns530u" path="res://scenes/MainMenu/Cutscene.png" id="1_tlq7c"]
+
+[node name="Opening" type="Node2D"]
+script = ExtResource("1_i3v6i")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_tlq7c")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+offset_left = 1200.0
+offset_top = 900.0
+offset_right = 1772.0
+offset_bottom = 969.0
+
+[node name="Label" type="Label" parent="MarginContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 50
+text = "Press f to get into game
+"
+horizontal_alignment = 1
