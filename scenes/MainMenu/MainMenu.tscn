@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://c4r76om62vdid"]
+[gd_scene load_steps=3 format=3 uid="uid://c4r76om62vdid"]
 
 [ext_resource type="Texture2D" uid="uid://bkljvfqhx5dy3" path="res://scenes/MainMenu/Menu_Background.png" id="1_dsig6"]
+[ext_resource type="Script" path="res://scenes/MainMenu/MainMenu.gd" id="1_tnhua"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -9,6 +10,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_tnhua")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 0
@@ -27,3 +29,10 @@ alignment = 1
 [node name="Button" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 text = "Play game"
+
+[node name="Button2" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Play without cutscene"
+
+[connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Button2" to="." method="_on_button_2_pressed"]
