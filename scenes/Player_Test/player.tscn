@@ -676,7 +676,7 @@ animation = &"Stand"
 animation = &"Unroll"
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_86gix"]
-graph_offset = Vector2(-245.931, 198.147)
+graph_offset = Vector2(-441.235, 49.1317)
 nodes/Crouch/node = SubResource("AnimationNodeAnimation_kixrx")
 nodes/Crouch/position = Vector2(80, 480)
 nodes/Death/node = SubResource("AnimationNodeAnimation_aklrv")
