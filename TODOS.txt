@@ -1,0 +1,6 @@
+1 CURRENT -->  Implement textures to make tiling easier
+2 Implement checkpoints 
+3 Implement roll mechanic
+4 Figure out text box issues on game end
+5 Figure level editor
+6 Figure out grappling hook
