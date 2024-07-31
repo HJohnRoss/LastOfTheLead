@@ -5,3 +5,5 @@
 5 Figure level editor
 6 Figure out grappling hook
 7 Improve movement Coytote time, more animations, corner bumps etc, better momentum
+8 figure out player instantiate
+
