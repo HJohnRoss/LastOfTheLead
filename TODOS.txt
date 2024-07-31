@@ -4,3 +4,4 @@
 4 Figure out text box issues on game end
 5 Figure level editor
 6 Figure out grappling hook
+7 Improve movement Coytote time, more animations, corner bumps etc, better momentum
