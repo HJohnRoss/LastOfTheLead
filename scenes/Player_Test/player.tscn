@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://bgipgn30b8erw"]
+[gd_scene load_steps=38 format=3 uid="uid://bgipgn30b8erw"]
 
 [ext_resource type="Script" path="res://scenes/Player_Test/playertest.gd" id="1_q3r7g"]
 [ext_resource type="Texture2D" uid="uid://240ietrd4tk7" path="res://scenes/player/Player_crouch.png" id="3_ari80"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://ccg8evjlwwv5q" path="res://scenes/player/Lead_run_transition.png" id="5_6ummp"]
 [ext_resource type="Texture2D" uid="uid://ue2l7uqujmie" path="res://scenes/player/Player_into_roll_animation.png" id="6_if2q3"]
 [ext_resource type="PackedScene" uid="uid://dlfq75xfa8y5p" path="res://scenes/pauseMenu/pause_menu.tscn" id="10_3gwul"]
+[ext_resource type="Script" path="res://scenes/Player_Test/Camera2D.gd" id="10_8gteq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2ribg"]
 size = Vector2(12.8889, 29.3333)
@@ -764,6 +765,7 @@ position = Vector2(0.5, 9)
 shape = SubResource("RectangleShape2D_h1nos")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+script = ExtResource("10_8gteq")
 
 [node name="pauseMenu" parent="Camera2D" instance=ExtResource("10_3gwul")]
 visible = false
@@ -792,3 +794,4 @@ position = Vector2(-8, 15)
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="animation_finished" from="Player_Animation_Tree" to="." method="_on_player_animation_tree_animation_finished"]
+[connection signal="body_entered" from="Stomp" to="." method="_on_stomp_body_entered"]

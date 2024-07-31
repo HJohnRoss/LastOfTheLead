@@ -2,15 +2,9 @@ extends Node2D
 
 @onready var background = $TextureRect
 
-var opDialogLines: Array[String] = []
-var current_line_index = 0
 
-var text_box
+
 var text_box_position = Vector2(850, 300)
-
-var is_dialog_active = false
-var can_advance_line = false
-
 var arr: Array[String] = ["The philosophers stone is found"
 , "Alchemists can now turn lead into gold",
 "But their greed has gone too far",

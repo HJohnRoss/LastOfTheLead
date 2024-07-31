@@ -10,6 +10,7 @@ extends CharacterBody2D
 @onready var tree : AnimationTree = $Player_Animation_Tree
 @onready var animationPlayer : AnimationPlayer = $Player_Animation
 @onready var mask4 : Timer = $Timer
+@onready var camera : Camera2D = $Camera2D
 
 @export var backstab: PackedScene
 
@@ -23,6 +24,8 @@ var rolling = 0
 var crouching = 0
 var dead = false
 var permeable = true
+
+
 
 func _ready() -> void:
 	# setting up the global variables for raytracers
@@ -83,6 +86,8 @@ func _physics_process(delta: float) -> void:
 func get_input() -> void:
 	velocity.x = 0
 	#player input
+	if Input.is_action_just_pressed("restart"):
+		get_tree().change_scene_to_file("res://scenes/level_1/Test_Level.tscn")
 	
 	if Input.is_action_just_pressed("Suicide"):
 		dead = true
@@ -133,3 +138,8 @@ func _on_player_animation_tree_animation_finished(anim_name):
 
 func _on_timer_timeout():
 	permeable = true
+
+
+func _on_stomp_body_entered(body):
+	if body.name == "Philosophers_stone":
+		camera.end_text()

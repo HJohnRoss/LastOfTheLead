@@ -14,6 +14,7 @@ var can_advance_line = false
 
 
 func start_dialog(position: Vector2, lines: Array[String]):
+	print(lines)
 	if is_dialog_active:
 		return
 		
