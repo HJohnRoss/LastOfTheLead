@@ -1,9 +1,9 @@
-1 CURRENT -->  Implement textures to make tiling easier
-2 Implement checkpoints 
-3 Implement roll mechanic
-4 Figure out text box issues on game end
-5 Figure level editor
-6 Figure out grappling hook
-7 Improve movement Coytote time, more animations, corner bumps etc, better momentum
-8 figure out player instantiate
+CURRENT -->  Implement terrain to make tiling easier
+Implement checkpoints 
+Implement roll mechanic
+Figure out text box issues on game end
+Figure level editor
+Figure out grappling hook
+Improve movement Coytote time, more animations, corner bumps etc, better momentum
+figure out player instantiate
 

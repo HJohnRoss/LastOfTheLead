@@ -1773,7 +1773,7 @@ rotation = -3.14159
 scale = Vector2(113, -113)
 
 [node name="Player" parent="Spawn point" instance=ExtResource("3_rwleo")]
-position = Vector2(0.061944, -0.150442)
+position = Vector2(0.061945, -0.150442)
 rotation = -3.14159
 scale = Vector2(0.0265487, -0.0265487)
 
