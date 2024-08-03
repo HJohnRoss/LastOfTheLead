@@ -1,6 +1,8 @@
 CURRENT -->  Implement terrain to make tiling easier
 Implement checkpoints 
 Implement roll mechanic
+Implement whip attack
+Implement whip grapple
 Figure out text box issues on game end
 Figure level editor
 Figure out grappling hook
