@@ -1,4 +1,5 @@
 CURRENT -->  Implement terrain to make tiling easier
+revamp level and project settings to make developing easier.
 Implement checkpoints 
 Implement roll mechanic
 Implement whip attack
